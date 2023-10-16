@@ -1,17 +1,13 @@
-# Welcome to MkDocs
+# AirGradient Arduino with MQTT
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+This is an Arduino sketch for the AirGradient DIY Air Quality Sensor Pro, PCB version 4.2.
 
-## Commands
+The base configuration for an AirGradient product is for it to log data to AirGradient's servers. This sketch replaces that functionality with MQTT capabilities to log data to a server of your choice.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Getting Started and uploading this sketch
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+1. Download and Install the [Arduino IDE](https://www.arduino.cc/en/software), [Arduino CLI](https://arduino.github.io/arduino-cli/0.19/installation/), or [VS Code](https://code.visualstudio.com/) with the [Arduino extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino) to your system.
+1. Clone this repo or download the latest release (a zip of the source code).
+1. Open `airgradient_mqtt.ino` with your chosen Arduino tools.
+1. Install all required Arduino reference libraries.
+1. Plug in the microcontroller for your AirGradient (such as an ESP8266 Wemos LOLIN D1 mini) and upload the sketch to the controller.

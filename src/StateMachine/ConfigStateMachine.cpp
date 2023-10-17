@@ -1,11 +1,10 @@
 #include "ConfigStateMachine.h"
 #include "TypeConversionFunctions.h"
-#include "Arduino.h"
-
-#define RTTI_ENABLED 1
+//#include "Arduino.h"
 
 // Pin connected to AirGradient push button
 #define BUTTON_PIN D7
+#define RTTI_ENABLED 1
 
 using namespace Display;
 using namespace Input;
@@ -136,7 +135,7 @@ StateBase& RebootState::GetInstance()
 
 void SelectState::Enter(MachineBase* machine) 
 {
-#if defined(RTTI_ENABLED)
+#if RTTI_ENABLED
     //Serial.println("RTTI enabled");
     if(ConfigStateMachine* configMachine = dynamic_cast<ConfigStateMachine*>(machine))
     {
@@ -147,7 +146,7 @@ void SelectState::Enter(MachineBase* machine)
         );
     }
 #else
-    Serial.println("RTTI disabled");
+    //Serial.println("RTTI disabled");
     if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
     {
         configMachine->WriteToDisplay(

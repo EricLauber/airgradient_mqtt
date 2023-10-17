@@ -4,6 +4,7 @@
 #include <AUnit.h>
 #include <AUnitVerbose.h>
 #include <Input.h>
+#include "TimeControlButton.h"
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -29,6 +30,95 @@ test(ButtonTests, Reset)
 
     assertFalse(testButton->SingleClicked);
     assertFalse(testButton->LongPressed);
+}
+
+// todo - variables need public access to confirm operation
+// test(ButtonTests, SetupInitialLoopValues)
+// {
+//     IButton *testButton = new Button(BUTTON_PIN);
+
+    
+// }
+
+test(TimeControlMockButtonTests, Constructor)
+{
+    IButton *testButton = new TimeControlButton(BUTTON_PIN);
+
+    assertNotEqual(nullptr, testButton);
+}
+
+test(TimeControlButtonTests, ShortPress)
+{
+    // Arrange
+    int shortPressMaxTime = 2500; //todo - find a better way to handle this number
+    TimeControlButton *testButton = new TimeControlButton(BUTTON_PIN);
+    // AirGradient uses a Pull-up resistor and button grounds it out. High is 'false'
+    digitalReadValue(BUTTON_PIN, 1);
+    testButton->SetupInitialLoopValues();
+
+    // Act
+
+    // Loop 0
+    testButton->setCurrentMillis(0);
+    testButton->ReadButtonData();
+
+    // Loop 1
+    testButton->setCurrentMillis(100);
+    // press the button
+    digitalReadValue(BUTTON_PIN, 0);
+    testButton->ReadButtonData();
+
+    // Loop 2
+    testButton->setCurrentMillis(1300);
+    // release the button
+    digitalReadValue(BUTTON_PIN, 1);
+    testButton->ReadButtonData();
+
+    // Assert
+    assertTrue(testButton->SingleClicked);
+    assertFalse(testButton->LongPressed);
+}
+
+test(TimeControlButtonTests, LongPress)
+{
+    // Arrange
+    int shortPressMaxTime = 2500; //todo - find a better way to handle this number
+    TimeControlButton *testButton = new TimeControlButton(BUTTON_PIN);
+    // AirGradient uses a Pull-up resistor and button grounds it out. High is 'false'
+    digitalReadValue(BUTTON_PIN, 1);
+    testButton->SetupInitialLoopValues();
+
+    // Act
+
+    // Loop 0
+    Serial.println("loop 0");
+    testButton->setCurrentMillis(0);
+    testButton->ReadButtonData();
+
+    // Loop 1
+    Serial.println("loop 1");
+    testButton->setCurrentMillis(100);
+    // press the button
+    digitalReadValue(BUTTON_PIN, 0);
+    testButton->ReadButtonData();
+
+    // Loop 1
+    Serial.println("loop 2");
+    testButton->setCurrentMillis(2500);
+    // press the button
+    digitalReadValue(BUTTON_PIN, 0);
+    testButton->ReadButtonData();
+
+    // Loop 2
+    Serial.println("loop 3");
+    testButton->setCurrentMillis(5000);
+    // release the button
+    digitalReadValue(BUTTON_PIN, 1);
+    testButton->ReadButtonData();
+
+    // Assert
+    assertFalse(testButton->SingleClicked);
+    assertTrue(testButton->LongPressed);
 }
 
 void setup()

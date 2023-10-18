@@ -13,6 +13,7 @@ namespace Input
             unsigned long pressedTime = 0;
             unsigned long releasedTime = 0;
 
+            // todo - make these more configurable. Can we have just one?
             int shortpresstime = 2500;
             int longpresstime = 2500;
 
@@ -32,9 +33,8 @@ namespace Input
             void SetupInitialLoopValues();
             void ReadButtonData();
 
-        // Wrapper around hardware millis() call to enable mocking
-        protected:
-            virtual unsigned long getCurrentMillis() const { return ::millis(); }
+            // Wrapper around hardware millis() call to enable mocking
+            virtual unsigned long GetCurrentMillis() const { return ::millis(); }
     };
 }
 #endif

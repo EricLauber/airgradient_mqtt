@@ -53,21 +53,18 @@ int ConfigStateMachine::WriteToDisplay(String line1, String line2, String line3)
 // SelectState short-press rotates to the EditConfigState
 void SelectState::ShortPress(MachineBase* machine)
 {
-    //setState(machine, new EditConfigState());
     machine->SetState(EditConfigState::GetInstance());
 }
 
 // SelectState long-press has the same action as the short-press
 void SelectState::LongPress(MachineBase* machine)
 {
-    //setState(machine, new EditConfigState());
     machine->SetState(EditConfigState::GetInstance());
 }
 
-// SelectState short-press rotates to the ClearState
+// EditConfigState short-press rotates to the ClearState
 void EditConfigState::ShortPress(MachineBase* machine)
 {
-    //setState(machine, new ClearState());
     machine->SetState(ClearState::GetInstance());
 }
 
@@ -76,7 +73,7 @@ void EditConfigState::LongPress(MachineBase* machine)
     
 }
 
-// SelectState short-press rotates to the RebootState
+// ClearState short-press rotates to the RebootState
 void ClearState::ShortPress(MachineBase* machine)
 {
     //setState(machine, new RebootState());
@@ -89,7 +86,7 @@ void ClearState::LongPress(MachineBase* machine)
     
 }
 
-// SelectState short-press rotates back to the EditConfigState
+// RebootState short-press rotates back to the EditConfigState
 void RebootState::ShortPress(MachineBase* machine)
 {
     //setState(machine, new EditConfigState());

@@ -9,7 +9,6 @@
 using aunit::TestRunner;
 using aunit::Verbosity;
 using namespace Input;
-// TODO namespace not implemented yet
 
 #define BUTTON_PIN D7
 
@@ -59,17 +58,17 @@ test(TimeControlButtonTests, ShortPress)
     // Act
 
     // Loop 0
-    testButton->setCurrentMillis(0);
+    testButton->SetCurrentMillis(0);
     testButton->ReadButtonData();
 
     // Loop 1
-    testButton->setCurrentMillis(100);
+    testButton->SetCurrentMillis(100);
     // press the button
     digitalReadValue(BUTTON_PIN, 0);
     testButton->ReadButtonData();
 
     // Loop 2
-    testButton->setCurrentMillis(1300);
+    testButton->SetCurrentMillis(1300);
     // release the button
     digitalReadValue(BUTTON_PIN, 1);
     testButton->ReadButtonData();
@@ -77,6 +76,35 @@ test(TimeControlButtonTests, ShortPress)
     // Assert
     assertTrue(testButton->SingleClicked);
     assertFalse(testButton->LongPressed);
+}
+
+test(TimeControlButtonTests, MillisecondControl)
+{
+    TimeControlButton *testButton = new TimeControlButton(BUTTON_PIN);
+    unsigned long testMillisValue = 0;
+
+    testButton->SetCurrentMillis(testMillisValue);
+    assertEqual(testMillisValue, testButton->GetCurrentMillis());
+
+    testMillisValue = 100;
+    testButton->SetCurrentMillis(testMillisValue);
+    assertEqual(testMillisValue, testButton->GetCurrentMillis());
+
+    testMillisValue = 500;
+    testButton->SetCurrentMillis(testMillisValue);
+    assertEqual(testMillisValue, testButton->GetCurrentMillis());
+
+    testMillisValue = 1000;
+    testButton->SetCurrentMillis(testMillisValue);
+    assertEqual(testMillisValue, testButton->GetCurrentMillis());
+
+    testMillisValue = 3000;
+    testButton->SetCurrentMillis(testMillisValue);
+    assertEqual(testMillisValue, testButton->GetCurrentMillis());
+    
+    testMillisValue = 5000;
+    testButton->SetCurrentMillis(testMillisValue);
+    assertEqual(testMillisValue, testButton->GetCurrentMillis());
 }
 
 test(TimeControlButtonTests, LongPress)
@@ -91,27 +119,22 @@ test(TimeControlButtonTests, LongPress)
     // Act
 
     // Loop 0
-    Serial.println("loop 0");
-    testButton->setCurrentMillis(0);
+    testButton->SetCurrentMillis(0);
     testButton->ReadButtonData();
 
     // Loop 1
-    Serial.println("loop 1");
-    testButton->setCurrentMillis(100);
-    // press the button
-    digitalReadValue(BUTTON_PIN, 0);
-    testButton->ReadButtonData();
-
-    // Loop 1
-    Serial.println("loop 2");
-    testButton->setCurrentMillis(2500);
+    testButton->SetCurrentMillis(100);
     // press the button
     digitalReadValue(BUTTON_PIN, 0);
     testButton->ReadButtonData();
 
     // Loop 2
-    Serial.println("loop 3");
-    testButton->setCurrentMillis(5000);
+    testButton->SetCurrentMillis(3000);
+    testButton->ReadButtonData();
+
+    // Loop 3
+    Serial.println("loop 4");
+    testButton->SetCurrentMillis(5000);
     // release the button
     digitalReadValue(BUTTON_PIN, 1);
     testButton->ReadButtonData();

@@ -3,7 +3,7 @@
 
 include ../../.env
 
-APP_NAME := LocalStorageConfigTests
+APP_NAME := FlashDataManagerTests
 ARDUINO_LIBS := AUnit EpoxyEepromEsp EpoxyFS ArduinoJson Data Local
 ARDUINO_LIB_DIRS := \
 	../../src \

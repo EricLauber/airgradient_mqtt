@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "Button.h"
 
 namespace Input
@@ -19,7 +18,7 @@ namespace Input
             ReadButtonData();
 
             // If a max-wait is configured, break out if we've exceeded that length of time
-            if ((timeout > 0) && (timeout <= (loopStartTime + getCurrentMillis())))
+            if ((timeout > 0) && (timeout <= (loopStartTime + GetCurrentMillis())))
                 break;
                 
             delay(100);
@@ -32,48 +31,38 @@ namespace Input
         releasedTime = 0;
         lastButtonState = LOW;
         isPressing = false;
-        loopStartTime = getCurrentMillis();
+        loopStartTime = GetCurrentMillis();
     }
 
     void Button::ReadButtonData()
     {
-        Serial.println("pressedTime: " + String(pressedTime));
-        Serial.println("releasedTime: " + String(releasedTime));
-
-
-        Serial.println("reading button data");
         // Pull-up resistor means a press will read as LOW - toggle to make it more intuitive
         int buttonState = !digitalRead(buttonPin);
 
         // Button is pressed
         if (lastButtonState == LOW && buttonState == HIGH)
         {
-            Serial.println("Button has been pressed!");
-            pressedTime = getCurrentMillis();
+            pressedTime = GetCurrentMillis();
             isPressing = true;
         }
 
         // Button is released - could be a single click
         else if (lastButtonState == HIGH && buttonState == LOW)
         {
-            Serial.println("button was released");
             isPressing = false;
-            releasedTime = getCurrentMillis();
+            releasedTime = GetCurrentMillis();
             long pressDuration = releasedTime - pressedTime;
             if (pressDuration < shortpresstime)
             {
-                Serial.println("it is a single click");
                 this->SingleClicked = true;
             }
         }
 
         if (isPressing)
         {
-            Serial.println("button still being pressed");
-            long pressedDuration = getCurrentMillis() - pressedTime;
+            long pressedDuration = GetCurrentMillis() - pressedTime;
             if (pressedDuration > longpresstime)
             {
-                Serial.println("hit the point that this is a long press");
                 this->LongPressed = true;
             }
         }

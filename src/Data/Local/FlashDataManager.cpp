@@ -75,49 +75,4 @@ namespace Data::Local
         EEPROM.begin(512);
         FILE_SYSTEM.begin();
     }
-
-    // std::map<String, String> FlashDataManager::ReadServerConfiguration()
-    // {
-    //     std::map<String, String> configuration;
-
-    //     if (FILE_SYSTEM.exists(filename))
-    //     {
-    //         File configFile = FILE_SYSTEM.open(filename, "r");
-    //         if (configFile)
-    //         {
-    //             String configData;
-    //             while (configFile.available())
-    //             {
-    //                 configData += char(configFile.read());
-    //             }
-    //             DynamicJsonDocument json(1024);
-    //             auto deserializeError = deserializeJson(json, configData);
-    //             serializeJson(json, Serial);
-    //             if (!deserializeError)
-    //             {	
-    //                 // todo
-    //                 // this is specific to mqtt. maybe find a way to loop through everything and provide a big map?
-    //                 configuration.emplace("server", json["mqtt_server"]);
-    //                 configuration.emplace("username", json["mqtt_user"]);
-    //                 configuration.emplace("password", json["mqtt_pass"]);
-    //                 configuration.emplace("topic", json["mqtt_topic"]);
-    //             }
-    //             else
-    //             {
-    //                 // todo - failure scenario
-    //             }
-    //             configFile.close();
-    //         }
-    //         else
-    //         {
-    //             // todo - failure scenario
-    //         }
-    //     }
-    //     else
-    //     {
-    //         // todo - failure scenario
-    //     }
-
-    //     return configuration;
-    // }
 }

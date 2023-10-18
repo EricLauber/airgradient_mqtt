@@ -1,4 +1,4 @@
-#line 2 "FlashDataManagerTests.ino"
+#line 2 "FlashAndConfigTests.ino"
 
 #include <Arduino.h>
 #include <AUnit.h>
@@ -68,6 +68,14 @@ test(FlashDataManagerTests, ReadWriteLitleFS)
     dataManager->WriteToFile(testFilename, testData2);
     // Assert
     assertEqual(testData2AsString, dataManager->ReadFromFile(testFilename));
+}
+
+test(ConfigManagerTests, Constructor)
+{
+    IFlashDataManager *dataManager = new FlashDataManager();
+    ConfigManager *configManager = new ConfigManager(dataManager);
+
+    assertNotEqual(nullptr, configManager);
 }
 
 void setup()

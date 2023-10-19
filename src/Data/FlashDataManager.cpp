@@ -8,7 +8,7 @@
 #define FILE_SYSTEM LittleFS
 #endif
 
-namespace Data::Local
+namespace Data
 {
     char FlashDataManager::ReadFromAddress(int address)
     {

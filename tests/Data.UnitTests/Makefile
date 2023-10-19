@@ -4,8 +4,7 @@
 include ../../.env
 
 APP_NAME := FlashAndConfigTests
-ARDUINO_LIBS := AUnit EpoxyEepromEsp EpoxyFS ArduinoJson Data Local
+ARDUINO_LIBS := AUnit EpoxyEepromEsp EpoxyFS ArduinoJson Data
 ARDUINO_LIB_DIRS := \
-	../../src \
-	../../src/Data
+	../../src
 include $(arduino_ide_dir)/libraries/EpoxyDuino/EpoxyDuino.mk

@@ -2,9 +2,9 @@
 
 namespace Data
 {
-    ConfigManager::ConfigManager(IFlashDataManager* dataManager)
+    ConfigManager::ConfigManager()
     {
-        this->dataManager = dataManager;
+        dataManager = FlashDataManager();
     }
 
     int ConfigManager::ReadDisplayConfigurationMode()
@@ -24,7 +24,7 @@ namespace Data
 
         DynamicJsonDocument json(1024);
         //todo - mqtt file and web api file
-        String thisIsTheJson = IFlashDataManager->ReadFromFile("/config.json");
+        String thisIsTheJson = dataManager.ReadFromFile("/config.json");
 
         // auto deserializeError = deserializeJson(json, configData);
         // serializeJson(json, Serial);

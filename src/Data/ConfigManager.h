@@ -4,9 +4,7 @@
 #include <WString.h>
 #include <map>
 #include "NetworkProtocol.h"
-#include "./Local/IFlashDataManager.h"
-
-using namespace Data::Local;
+#include "FlashDataManager.h"
 
 namespace Data
 {
@@ -14,7 +12,7 @@ namespace Data
     class ConfigManager
     {
         private:
-            IFlashDataManager* dataManager;
+            FlashDataManager dataManager;
 
         public:
             int ReadDisplayConfigurationMode();
@@ -22,7 +20,7 @@ namespace Data
             std::map<String, String> ReadServerConfiguration(NetworkProtocol protocol);
             int WriteServerConfiguration(std::map<String, String> configuration, NetworkProtocol protocol);
 
-            ConfigManager(IFlashDataManager* dataManager);
+            ConfigManager();
     };
 }
 

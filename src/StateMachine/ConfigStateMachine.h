@@ -67,4 +67,48 @@ class RebootState : public StateBase
         static StateBase& GetInstance();
 };
 
+#pragma region DisplayConfigurationStates
+
+class DisplayConfigTempCμgm3 : public StateBase
+{
+    public:
+        void Enter(MachineBase* machine) override;
+        void ShortPress(MachineBase* machine) override;
+        void LongPress(MachineBase* machine) override;
+        void Exit(MachineBase* machine) override;
+        static StateBase& GetInstance();
+};
+
+class DisplayConfigTempFμgm3 : public StateBase
+{
+    public:
+        void Enter(MachineBase* machine) override;
+        void ShortPress(MachineBase* machine) override;
+        void LongPress(MachineBase* machine) override;
+        void Exit(MachineBase* machine) override;
+        static StateBase& GetInstance();
+};
+
+class DisplayConfigTempCAQI : public StateBase
+{
+    public:
+        void Enter(MachineBase* machine) override;
+        void ShortPress(MachineBase* machine) override;
+        void LongPress(MachineBase* machine) override;
+        void Exit(MachineBase* machine) override;
+        static StateBase& GetInstance();
+};
+
+class DisplayConfigTempFAQI : public StateBase
+{
+    public:
+        void Enter(MachineBase* machine) override;
+        void ShortPress(MachineBase* machine) override;
+        void LongPress(MachineBase* machine) override;
+        void Exit(MachineBase* machine) override;
+        static StateBase& GetInstance();
+};
+
+#pragma endregion DisplayConfigurationStates
+
 #endif

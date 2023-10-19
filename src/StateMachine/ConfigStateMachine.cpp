@@ -52,6 +52,8 @@ int ConfigStateMachine::WriteToDisplay(String line1, String line2, String line3)
     return display->WriteLines(line1, line2, line3);
 }
 
+#pragma region State_Press_Functions
+
 // SelectState short-press rotates to the EditConfigState
 void SelectState::ShortPress(MachineBase* machine)
 {
@@ -70,9 +72,10 @@ void EditConfigState::ShortPress(MachineBase* machine)
     machine->SetState(ClearState::GetInstance());
 }
 
+// EditConfigState long-press switches to the DisplayConfig states
 void EditConfigState::LongPress(MachineBase* machine)
 {
-    
+    machine->SetState(DisplayConfigTempCμgm3::GetInstance());
 }
 
 // ClearState short-press rotates to the RebootState
@@ -102,6 +105,56 @@ void RebootState::LongPress(MachineBase* machine)
     //ESP.restart();
 }
 
+
+
+
+// DisplayConfigTempCμgm3 short-press rotates to the DisplayConfigTempFμgm3
+void DisplayConfigTempCμgm3::ShortPress(MachineBase* machine)
+{
+    machine->SetState(DisplayConfigTempFμgm3::GetInstance());
+}
+
+
+void DisplayConfigTempCμgm3::LongPress(MachineBase* machine)
+{
+    
+}
+
+// DisplayConfigTempFμgm3 short-press rotates to the DisplayConfigTempCAQI
+void DisplayConfigTempFμgm3::ShortPress(MachineBase* machine)
+{
+    machine->SetState(DisplayConfigTempCAQI::GetInstance());
+}
+
+void DisplayConfigTempFμgm3::LongPress(MachineBase* machine)
+{
+    
+}
+
+// DisplayConfigTempCAQI short-press rotates to the DisplayConfigTempFAQI
+void DisplayConfigTempCAQI::ShortPress(MachineBase* machine)
+{
+    machine->SetState(DisplayConfigTempFAQI::GetInstance());
+}
+
+void DisplayConfigTempCAQI::LongPress(MachineBase* machine)
+{
+    
+}
+
+// DisplayConfigTempFAQI short-press rotates back to the DisplayConfigTempCμgm3
+void DisplayConfigTempFAQI::ShortPress(MachineBase* machine)
+{
+    machine->SetState(DisplayConfigTempCμgm3::GetInstance());
+}
+
+void DisplayConfigTempFAQI::LongPress(MachineBase* machine)
+{
+    
+}
+
+#pragma endregion State_Press_Functions
+
 #pragma region State_GetInstance_Functions
 
 StateBase& SelectState::GetInstance()
@@ -125,6 +178,30 @@ StateBase& ClearState::GetInstance()
 StateBase& RebootState::GetInstance()
 {
     static RebootState singleton;
+    return singleton;
+}
+
+StateBase& DisplayConfigTempCμgm3::GetInstance()
+{
+    static DisplayConfigTempCμgm3 singleton;
+    return singleton;
+}
+
+StateBase& DisplayConfigTempFμgm3::GetInstance()
+{
+    static DisplayConfigTempFμgm3 singleton;
+    return singleton;
+}
+
+StateBase& DisplayConfigTempCAQI::GetInstance()
+{
+    static DisplayConfigTempCAQI singleton;
+    return singleton;
+}
+
+StateBase& DisplayConfigTempFAQI::GetInstance()
+{
+    static DisplayConfigTempFAQI singleton;
     return singleton;
 }
 
@@ -225,6 +302,54 @@ void RebootState::Enter(MachineBase* machine)
     }
 #endif    
 }
+
+void DisplayConfigTempCμgm3::Enter(MachineBase* machine) 
+{
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->WriteToDisplay(
+            OLEDStrings::ConfigTempC,
+            OLEDStrings::ConfigPMμgm3,
+            OLEDStrings::ConfigSaveMessage
+        );
+    }  
+}
+
+void DisplayConfigTempFμgm3::Enter(MachineBase* machine) 
+{
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->WriteToDisplay(
+            OLEDStrings::ConfigTempF,
+            OLEDStrings::ConfigPMμgm3,
+            OLEDStrings::ConfigSaveMessage
+        );
+    }  
+}
+
+void DisplayConfigTempCAQI::Enter(MachineBase* machine) 
+{
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->WriteToDisplay(
+            OLEDStrings::ConfigTempC,
+            OLEDStrings::ConfigPMAQI,
+            OLEDStrings::ConfigSaveMessage
+        );
+    }  
+}
+
+void DisplayConfigTempFAQI::Enter(MachineBase* machine) 
+{
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->WriteToDisplay(
+            OLEDStrings::ConfigTempF,
+            OLEDStrings::ConfigPMAQI,
+            OLEDStrings::ConfigSaveMessage
+        );
+    }  
+}
 #pragma endregion State_Enter_Functions
 
 #pragma region State_Exit_Functions
@@ -233,5 +358,10 @@ void SelectState::Exit(MachineBase* machine) {}
 void EditConfigState::Exit(MachineBase* machine) {}
 void ClearState::Exit(MachineBase* machine) {}
 void RebootState::Exit(MachineBase* machine) {}
+
+void DisplayConfigTempCμgm3::Exit(MachineBase* machine) {}
+void DisplayConfigTempFμgm3::Exit(MachineBase* machine) {}
+void DisplayConfigTempCAQI::Exit(MachineBase* machine) {}
+void DisplayConfigTempFAQI::Exit(MachineBase* machine) {}
 
 #pragma endregion State_Exit_Functions

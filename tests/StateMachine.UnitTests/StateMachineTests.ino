@@ -12,7 +12,7 @@ using aunit::Verbosity;
 // TODO namespace not implemented yet
 //using namespace StateMachine;
 
-test(StateMachineTests, Constructor_and_Main_State_Transitions)
+test(StateMachineTests, Constructor_and_State_Transitions)
 {
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
@@ -27,6 +27,8 @@ test(StateMachineTests, Constructor_and_Main_State_Transitions)
         correctInitialState = true;
     }
     assertTrue(correctInitialState);
+
+    // Main State Selection
 
     // todo - for future readability, break these out into separate tests that leverage a test fixture and each configure the previous, expected state
     //https://github.com/bxparks/AUnit/tree/develop#test-fixtures
@@ -61,6 +63,48 @@ test(StateMachineTests, Constructor_and_Main_State_Transitions)
         loopedBackToEditState = true;
     }
     assertTrue(loopedBackToEditState);
+
+    // Configuration Mode Selection
+    bool enteredTempCμgm3 = false;
+    testMachine->GetState()->LongPress(testMachine);
+    if (dynamic_cast<DisplayConfigTempCμgm3*>(testMachine->GetState()) != nullptr)
+    {
+        enteredTempCμgm3 = true;
+    }
+    assertTrue(enteredTempCμgm3);
+
+    // Rotate through Configuration Mode states
+    bool enteredTempFμgm3 = false;
+    testMachine->GetState()->ShortPress(testMachine);
+    if (dynamic_cast<DisplayConfigTempFμgm3*>(testMachine->GetState()) != nullptr)
+    {
+        enteredTempFμgm3 = true;
+    }
+    assertTrue(enteredTempFμgm3);
+
+    bool enteredTempCAQI = false;
+    testMachine->GetState()->ShortPress(testMachine);
+    if (dynamic_cast<DisplayConfigTempCAQI*>(testMachine->GetState()) != nullptr)
+    {
+        enteredTempCAQI = true;
+    }
+    assertTrue(enteredTempCAQI);
+
+    bool enteredTempFAQI = false;
+    testMachine->GetState()->ShortPress(testMachine);
+    if (dynamic_cast<DisplayConfigTempFAQI*>(testMachine->GetState()) != nullptr)
+    {
+        enteredTempFAQI = true;
+    }
+    assertTrue(enteredTempFAQI);
+
+    bool loopedBackToTempCμgm3 = false;
+    testMachine->GetState()->ShortPress(testMachine);
+    if (dynamic_cast<DisplayConfigTempCμgm3*>(testMachine->GetState()) != nullptr)
+    {
+        loopedBackToTempCμgm3 = true;
+    }
+    assertTrue(loopedBackToTempCμgm3);
 }
 
 test(StateMachineTests, RunMachine)

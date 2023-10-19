@@ -107,6 +107,34 @@ test(StateMachineTests, Constructor_and_State_Transitions)
     assertTrue(loopedBackToTempCμgm3);
 }
 
+test(StateMachineTests, GetSetDisplayConfig)
+{
+    // Arrange
+    IDisplay *mockDisplay = new MockDisplay();
+    IButton *mockButton = new MockButton();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+
+    // Act
+    testMachine->SetDisplayConfiguration(DisplayConfiguration::TempCAQI);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempCAQI, (int)testMachine->GetDisplayConfiguration());
+
+    // Act
+    testMachine->SetDisplayConfiguration(DisplayConfiguration::TempFAQI);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempFAQI, (int)testMachine->GetDisplayConfiguration());
+
+    // Act
+    testMachine->SetDisplayConfiguration(DisplayConfiguration::TempCμgm3);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempCμgm3, (int)testMachine->GetDisplayConfiguration());
+
+    // Act
+    testMachine->SetDisplayConfiguration(DisplayConfiguration::TempFμgm3);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempFμgm3, (int)testMachine->GetDisplayConfiguration());
+}
+
 test(StateMachineTests, RunMachine)
 {
     // Arrange
@@ -169,6 +197,8 @@ test(StateMachineTests, State_WriteToDisplay)
     MockDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
 
+    // Main selection states
+
     // Act - ConfigStateMachine should begin with the SelectState.
     MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
 
@@ -208,6 +238,50 @@ test(StateMachineTests, State_WriteToDisplay)
     assertEqual(OLEDStrings::EditConfigStateLine1, mockDisplay->Line1);
     assertEqual(OLEDStrings::EditConfigStateLine2, mockDisplay->Line2);
     assertEqual(OLEDStrings::EditConfigStateLine3, mockDisplay->Line3);
+
+
+    // DisplayConfig States
+
+
+    // Act - DisplayConfigTempCμgm3
+    testMachine->GetState()->LongPress(testMachine);
+
+    // Assert
+    assertEqual(OLEDStrings::ConfigTempC, mockDisplay->Line1);
+    assertEqual(OLEDStrings::ConfigPMμgm3, mockDisplay->Line2);
+    assertEqual(OLEDStrings::ConfigSaveMessage, mockDisplay->Line3);
+
+    // Act - DisplayConfigTempFμgm3
+    testMachine->GetState()->ShortPress(testMachine);
+
+    // Assert
+    assertEqual(OLEDStrings::ConfigTempF, mockDisplay->Line1);
+    assertEqual(OLEDStrings::ConfigPMμgm3, mockDisplay->Line2);
+    assertEqual(OLEDStrings::ConfigSaveMessage, mockDisplay->Line3);
+
+    // Act - DisplayConfigTempCAQI
+    testMachine->GetState()->ShortPress(testMachine);
+
+    // Assert
+    assertEqual(OLEDStrings::ConfigTempC, mockDisplay->Line1);
+    assertEqual(OLEDStrings::ConfigPMAQI, mockDisplay->Line2);
+    assertEqual(OLEDStrings::ConfigSaveMessage, mockDisplay->Line3);
+
+    // Act - DisplayConfigTempFAQI
+    testMachine->GetState()->ShortPress(testMachine);
+
+    // Assert
+    assertEqual(OLEDStrings::ConfigTempF, mockDisplay->Line1);
+    assertEqual(OLEDStrings::ConfigPMAQI, mockDisplay->Line2);
+    assertEqual(OLEDStrings::ConfigSaveMessage, mockDisplay->Line3);
+
+    // Act - DisplayConfigTempCμgm3
+    testMachine->GetState()->ShortPress(testMachine);
+
+    // Assert
+    assertEqual(OLEDStrings::ConfigTempC, mockDisplay->Line1);
+    assertEqual(OLEDStrings::ConfigPMμgm3, mockDisplay->Line2);
+    assertEqual(OLEDStrings::ConfigSaveMessage, mockDisplay->Line3);
 }
 
 void setup()

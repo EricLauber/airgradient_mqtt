@@ -38,9 +38,17 @@ class OLEDStrings
         static inline const String StartupMessageLine1 = "Warming up";
         static inline const String StartupMessageLine2 = "Serial Number:";
 
-        static inline const String ConfigSavedLine1 = "Saved";
-        static inline const String ConfigSavedLine2 = "Release";
-        static inline const String ConfigSavedLine3 = "Button Now";
+        static inline const String ConfigSavingLine1 = "Saving";
+        static inline const String ConfigSavingLine2 = "metrics";
+        static inline const String ConfigSavingLine3 = "display...";
+
+        static inline const String ConfigSavedSuccessLine1 = "Metrics";
+        static inline const String ConfigSavedSuccessLine2 = "display";
+        static inline const String ConfigSavedSuccessLine3 = "saved!";
+
+        static inline const String ConfigSavedFailedLine1 = "Failed to";
+        static inline const String ConfigSavedFailedLine2 = "save";
+        static inline const String ConfigSavedFailedLine3 = "metrics dsp.";
 
         static inline const String RebootingLine1 = "Rebooting";
         static inline const String RebootingLine2 = "in";

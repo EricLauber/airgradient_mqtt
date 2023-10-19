@@ -32,13 +32,11 @@ void ConfigStateMachine::Run()
     // 2. Pass inputs to State
     if (button->LongPressed)
     {
-        //state->LongPress(*this);
         state->LongPress(this);
         button->Reset();
     }
     else if (button->SingleClicked)
-    {
-        //state->ShortPress(*this);
+    {;
         state->ShortPress(this);
         button->Reset();
     }
@@ -50,6 +48,52 @@ void ConfigStateMachine::Run()
 int ConfigStateMachine::WriteToDisplay(String line1, String line2, String line3)
 {
     return display->WriteLines(line1, line2, line3);
+}
+
+void ConfigStateMachine::SetDisplayConfiguration(DisplayConfiguration displayConfiguration)
+{
+    this->selectedConfiguration = displayConfiguration;
+}
+
+DisplayConfiguration ConfigStateMachine::GetDisplayConfiguration()
+{
+    return selectedConfiguration;
+}
+
+//todo - test coverage (at least for saving the data)
+void ConfigStateMachine::SaveDisplayConfiguration()
+{
+    WriteToDisplay(
+        OLEDStrings::ConfigSavingLine1,
+        OLEDStrings::ConfigSavingLine2,
+        OLEDStrings::ConfigSavingLine3
+    );
+
+    // true on success
+    bool result = configManager.WriteDisplayConfigurationMode(selectedConfiguration);
+
+    delay(500);
+
+    if (result)
+    {
+        WriteToDisplay(
+            OLEDStrings::ConfigSavedSuccessLine1,
+            OLEDStrings::ConfigSavedSuccessLine2,
+            OLEDStrings::ConfigSavedSuccessLine3
+        );
+    }
+    else
+    {
+        WriteToDisplay(
+            OLEDStrings::ConfigSavedFailedLine1,
+            OLEDStrings::ConfigSavedFailedLine2,
+            OLEDStrings::ConfigSavedFailedLine3
+        );
+    }
+
+    delay(500);
+
+    SetState(SelectState::GetInstance());
 }
 
 #pragma region State_Press_Functions
@@ -117,7 +161,10 @@ void DisplayConfigTempCμgm3::ShortPress(MachineBase* machine)
 
 void DisplayConfigTempCμgm3::LongPress(MachineBase* machine)
 {
-    
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->SaveDisplayConfiguration();
+    }
 }
 
 // DisplayConfigTempFμgm3 short-press rotates to the DisplayConfigTempCAQI
@@ -128,7 +175,10 @@ void DisplayConfigTempFμgm3::ShortPress(MachineBase* machine)
 
 void DisplayConfigTempFμgm3::LongPress(MachineBase* machine)
 {
-    
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->SaveDisplayConfiguration();
+    }
 }
 
 // DisplayConfigTempCAQI short-press rotates to the DisplayConfigTempFAQI
@@ -139,7 +189,10 @@ void DisplayConfigTempCAQI::ShortPress(MachineBase* machine)
 
 void DisplayConfigTempCAQI::LongPress(MachineBase* machine)
 {
-    
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->SaveDisplayConfiguration();
+    }
 }
 
 // DisplayConfigTempFAQI short-press rotates back to the DisplayConfigTempCμgm3
@@ -150,7 +203,10 @@ void DisplayConfigTempFAQI::ShortPress(MachineBase* machine)
 
 void DisplayConfigTempFAQI::LongPress(MachineBase* machine)
 {
-    
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->SaveDisplayConfiguration();
+    }
 }
 
 #pragma endregion State_Press_Functions
@@ -312,7 +368,8 @@ void DisplayConfigTempCμgm3::Enter(MachineBase* machine)
             OLEDStrings::ConfigPMμgm3,
             OLEDStrings::ConfigSaveMessage
         );
-    }  
+        configMachine->SetDisplayConfiguration(DisplayConfiguration::TempCμgm3);
+    }
 }
 
 void DisplayConfigTempFμgm3::Enter(MachineBase* machine) 
@@ -324,6 +381,7 @@ void DisplayConfigTempFμgm3::Enter(MachineBase* machine)
             OLEDStrings::ConfigPMμgm3,
             OLEDStrings::ConfigSaveMessage
         );
+        configMachine->SetDisplayConfiguration(DisplayConfiguration::TempFμgm3);
     }  
 }
 
@@ -336,6 +394,7 @@ void DisplayConfigTempCAQI::Enter(MachineBase* machine)
             OLEDStrings::ConfigPMAQI,
             OLEDStrings::ConfigSaveMessage
         );
+        configMachine->SetDisplayConfiguration(DisplayConfiguration::TempCAQI);
     }  
 }
 
@@ -348,6 +407,7 @@ void DisplayConfigTempFAQI::Enter(MachineBase* machine)
             OLEDStrings::ConfigPMAQI,
             OLEDStrings::ConfigSaveMessage
         );
+        configMachine->SetDisplayConfiguration(DisplayConfiguration::TempFAQI);
     }  
 }
 #pragma endregion State_Enter_Functions

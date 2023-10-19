@@ -18,11 +18,15 @@ class ConfigStateMachine : public MachineBase
         ConfigStateMachine(IDisplay* display, IButton* button);
         void Run() override;
         int WriteToDisplay(String line1, String line2, String line3);
+        void SetDisplayConfiguration(DisplayConfiguration displayConfiguration);
+        DisplayConfiguration GetDisplayConfiguration();
+        void SaveDisplayConfiguration();
 
     private:
         IDisplay* display;
         IButton* button;
         ConfigManager configManager;
+        DisplayConfiguration selectedConfiguration;
 };
 
 class SelectState : public StateBase

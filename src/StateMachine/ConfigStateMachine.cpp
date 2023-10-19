@@ -4,16 +4,18 @@
 
 // Pin connected to AirGradient push button
 #define BUTTON_PIN D7
-#define RTTI_ENABLED 1
+//#define RTTI_ENABLED 1
 
 using namespace Display;
 using namespace Input;
+using namespace Data;
 namespace TypeCast = StateMachineTypeConversionFunctions;
 
 ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button) : MachineBase(MachineType::CONFIG)
 {
     this->display = display;
     this->button = button;
+    configManager = ConfigManager();
     
     // This is the default/starting state
     StateBase *newState = new SelectState();

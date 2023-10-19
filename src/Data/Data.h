@@ -3,6 +3,8 @@
 
 #include "ConfigManager.h"
 #include "FlashDataManager.h"
+#include "NetworkProtocol.h"
+#include "DisplayConfiguration.h"
 #include "ISampleDataWriter.h"
 
 #endif

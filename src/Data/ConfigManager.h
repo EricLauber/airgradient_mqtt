@@ -4,6 +4,7 @@
 #include <WString.h>
 #include <map>
 #include "NetworkProtocol.h"
+#include "DisplayConfiguration.h"
 #include "FlashDataManager.h"
 
 namespace Data
@@ -13,10 +14,11 @@ namespace Data
     {
         private:
             FlashDataManager dataManager;
+            int address = 4;
 
         public:
-            int ReadDisplayConfigurationMode();
-            bool WriteDisplayConfigurationMode(int mode);
+            DisplayConfiguration ReadDisplayConfigurationMode();
+            bool WriteDisplayConfigurationMode(DisplayConfiguration mode);
             std::map<String, String> ReadServerConfiguration(NetworkProtocol protocol);
             int WriteServerConfiguration(std::map<String, String> configuration, NetworkProtocol protocol);
 

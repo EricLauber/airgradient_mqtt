@@ -75,6 +75,32 @@ test(ConfigManagerTests, Constructor)
     assertNotEqual(nullptr, configManager);
 }
 
+test(ConfigManagerTests, ReadWriteDisplayConfiguration)
+{
+    // Arrange
+    ConfigManager configManager = ConfigManager();
+
+    // Act and Assert
+    assertTrue(configManager.WriteDisplayConfigurationMode(DisplayConfiguration::TempCμgm3));
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempCμgm3, (int)configManager.ReadDisplayConfigurationMode());
+
+    // Act
+    assertTrue(configManager.WriteDisplayConfigurationMode(DisplayConfiguration::TempFμgm3));
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempFμgm3, (int)configManager.ReadDisplayConfigurationMode());
+
+    // Act
+    assertTrue(configManager.WriteDisplayConfigurationMode(DisplayConfiguration::TempCAQI));
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempCAQI, (int)configManager.ReadDisplayConfigurationMode());
+
+    // Act
+    assertTrue(configManager.WriteDisplayConfigurationMode(DisplayConfiguration::TempFAQI));
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempFAQI, (int)configManager.ReadDisplayConfigurationMode());
+}
+
 void setup()
 {
 #if ! defined(EPOXY_DUINO)

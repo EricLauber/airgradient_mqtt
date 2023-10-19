@@ -7,14 +7,15 @@ namespace Data
         dataManager = FlashDataManager();
     }
 
-    int ConfigManager::ReadDisplayConfigurationMode()
+    DisplayConfiguration ConfigManager::ReadDisplayConfigurationMode()
     {
-        return 0;
+        int mode = (int)dataManager.ReadFromAddress(address);
+        return static_cast<DisplayConfiguration>(mode);        
     }
 
-    bool ConfigManager::WriteDisplayConfigurationMode(int mode)
+    bool ConfigManager::WriteDisplayConfigurationMode(DisplayConfiguration mode)
     {
-        return false;
+        return dataManager.WriteToAddress(address, char(mode));
     }
 
 

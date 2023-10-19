@@ -5,10 +5,12 @@
 #include "StateBase.h"
 #include "../Display/Display.h"
 #include "../Input/Input.h"
+#include "../Data/Data.h"
 #include "../StringResources.h"
 
 using namespace Display;
 using namespace Input;
+using namespace Data;
 
 class ConfigStateMachine : public MachineBase
 {
@@ -20,7 +22,7 @@ class ConfigStateMachine : public MachineBase
     private:
         IDisplay* display;
         IButton* button;
-
+        ConfigManager configManager;
 };
 
 class SelectState : public StateBase

@@ -4,7 +4,7 @@
 include ../../.env
 
 APP_NAME := StateMachineTests
-ARDUINO_LIBS := AUnit StateMachine Display Input
+ARDUINO_LIBS := AUnit EpoxyEepromEsp EpoxyFS ArduinoJson StateMachine Display Input Data
 ARDUINO_LIB_DIRS := \
 	../../src
 include $(arduino_ide_dir)/libraries/EpoxyDuino/EpoxyDuino.mk

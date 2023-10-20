@@ -135,6 +135,40 @@ test(StateMachineTests, GetSetDisplayConfig)
     assertEqual((int)DisplayConfiguration::TempFμgm3, (int)testMachine->GetDisplayConfiguration());
 }
 
+test(StateMachineTests, DisplayConfigLongPress)
+{
+    // Arrange
+    IDisplay *mockDisplay = new MockDisplay();
+    IButton *mockButton = new MockButton();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+    ConfigManager configManager = ConfigManager();
+    
+    // Act
+    testMachine->SetState(DisplayConfigTempCμgm3::GetInstance());
+    testMachine->GetState()->LongPress(testMachine);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempCμgm3, (int)configManager.ReadDisplayConfigurationMode());
+
+    // Act
+    testMachine->SetState(DisplayConfigTempFμgm3::GetInstance());
+    testMachine->GetState()->LongPress(testMachine);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempFμgm3, (int)configManager.ReadDisplayConfigurationMode());
+
+    // Act
+    testMachine->SetState(DisplayConfigTempCAQI::GetInstance());
+    testMachine->GetState()->LongPress(testMachine);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempCAQI, (int)configManager.ReadDisplayConfigurationMode());
+
+    // Act
+    testMachine->SetState(DisplayConfigTempFAQI::GetInstance());
+    testMachine->GetState()->LongPress(testMachine);
+    // Assert
+    assertEqual((int)DisplayConfiguration::TempFAQI, (int)configManager.ReadDisplayConfigurationMode());
+
+}
+
 test(StateMachineTests, RunMachine)
 {
     // Arrange

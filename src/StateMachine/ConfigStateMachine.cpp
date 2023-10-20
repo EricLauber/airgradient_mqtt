@@ -60,7 +60,7 @@ DisplayConfiguration ConfigStateMachine::GetDisplayConfiguration()
     return selectedConfiguration;
 }
 
-//todo - test coverage (at least for saving the data)
+// todo - tie delay to configurable constant.
 void ConfigStateMachine::SaveDisplayConfiguration()
 {
     WriteToDisplay(

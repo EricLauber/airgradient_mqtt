@@ -1,5 +1,5 @@
 #Project information
-site_name: AirGradient-Arduino-MQTT
+site_name: AirGradient Arduino MQTT
 site_url: https://ericlauber.github.io/airgradient_mqtt/
 site_author: Eric Lauber
 site_description: >-
@@ -27,11 +27,29 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  features:
+    
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
+    - navigation.sections
+    
+    # - navigation.tabs.sticky
+    
   
-  # Page Tree
-  nav:
-    - Home: index.md
-    - Main Section A:
-      - Intro Stuff: another.md
-    - Main Section B:
-      - More: subfolder/more.md
+# Page Tree
+nav:
+  - Home: index.md
+
+  - Implementation:
+    - Getting Started: setup.md
+    - Details: implementationdetails.md
+    - Automated Tests: tests.md
+
+  - Integrations:
+    - 'Home Assistant': homeassistant.md
+  
+  - References: references.md
+    

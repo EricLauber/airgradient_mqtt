@@ -40,10 +40,9 @@ void ClearState::ShortPress(MachineBase* machine)
     machine->SetState(RebootState::GetInstance());
 }
 
-//void ClearState::LongPress(MachineBase &machine)
 void ClearState::LongPress(MachineBase* machine)
 {
-    
+    //todo - call the functions that clear the local config and filesystem
 }
 
 // RebootState short-press rotates back to the EditConfigState
@@ -53,7 +52,6 @@ void RebootState::ShortPress(MachineBase* machine)
     machine->SetState(EditConfigState::GetInstance());
 }
 
-//void RebootState::LongPress(MachineBase &machine)
 void RebootState::LongPress(MachineBase* machine)
 {
     if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))

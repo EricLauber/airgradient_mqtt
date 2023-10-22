@@ -327,6 +327,23 @@ test(StateMachineTests, State_WriteToDisplay)
     assertEqual(OLEDStrings::ConfigSaveMessage, mockDisplay->Line3);
 }
 
+test(StateMachineTests, Reboot)
+{
+    // Arrange
+    IDisplay *mockDisplay = new MockDisplay();
+    IButton *mockButton = new MockButton();
+    ISystem *mockSystem = new MockSystem();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    
+    testMachine->SetState(RebootState::GetInstance());
+    
+    // Act
+    testMachine->GetState()->LongPress(testMachine);
+
+    // Assert - todo - right now we just check that we got this far
+    assertTrue(true);
+}
+
 void setup()
 {
 #if ! defined(EPOXY_DUINO)

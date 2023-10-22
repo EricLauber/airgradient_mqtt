@@ -1,6 +1,7 @@
 #include "MachineBase.h"
 #include "StateBase.h"
 
+// todo - wrap around RTTI switchboard directive
 MachineBase::MachineBase(const MachineType classType)
 {
     SetClassType(classType);

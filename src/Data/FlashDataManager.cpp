@@ -1,13 +1,5 @@
 #include "FlashDataManager.h"
 
-// Leverage EpoxyDuino to mock the onboard flash storage
-#if defined(EPOXY_DUINO)
-#define EEPROM EpoxyEepromEspInstance
-#define FILE_SYSTEM fs::EpoxyFS
-#else
-#define FILE_SYSTEM LittleFS
-#endif
-
 namespace Data
 {
     char FlashDataManager::ReadFromAddress(int address)

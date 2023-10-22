@@ -1,9 +1,5 @@
 #include "ConfigStateMachine.h"
 
-// Pin connected to AirGradient push button
-#define BUTTON_PIN D7
-//#define RTTI_ENABLED 1
-
 using namespace Display;
 using namespace Input;
 using namespace Data;
@@ -69,7 +65,7 @@ void ConfigStateMachine::SaveDisplayConfiguration()
     // true on success
     bool result = configManager.WriteDisplayConfigurationMode(selectedConfiguration);
 
-    delay(500);
+    delay(CONFIG_DISPLAY_DELAY);
 
     if (result)
     {
@@ -88,7 +84,7 @@ void ConfigStateMachine::SaveDisplayConfiguration()
         );
     }
 
-    delay(500);
+    delay(CONFIG_DISPLAY_DELAY);
 
     SetState(SelectState::GetInstance());
 }

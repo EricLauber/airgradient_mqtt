@@ -3,6 +3,7 @@
 
 #include "MachineBase.h"
 #include "StateBase.h"
+#include "../Switchboard.h"
 #include "../Display/Display.h"
 #include "../Input/Input.h"
 #include "../Data/Data.h"

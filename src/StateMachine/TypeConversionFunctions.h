@@ -1,3 +1,4 @@
+// todo - wrap around RTTI switchboard directive
 #ifndef TypeConversionFunctions_h
 #define TypeConversionFunctions_h
 

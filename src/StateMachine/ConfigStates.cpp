@@ -1,6 +1,8 @@
 #include "ConfigStateMachine.h"
-#include "TypeConversionFunctions.h"
 
+// todo - wrap around RTTI switchboard directive
+#include "TypeConversionFunctions.h"
+// todo - wrap around RTTI switchboard directive
 namespace TypeCast = StateMachineTypeConversionFunctions;
 
 #pragma region State_Press_Functions

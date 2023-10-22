@@ -1,3 +1,4 @@
+// todo - wrap around RTTI switchboard directive
 #include "TypeConversionFunctions.h"
 
 namespace StateMachineTypeConversionFunctions 

@@ -4,8 +4,11 @@
 #include <AUnit.h>
 #include <AUnitVerbose.h>
 #include <StateMachine.h>
+// #include "../Mocks/MockDisplay.h"
+// #include "../Mocks/MockButton.h"
 #include "MockDisplay.h"
 #include "MockButton.h"
+#include "../Mocks/MockSystem.h"
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -16,7 +19,8 @@ test(StateMachineTests, Constructor_and_State_Transitions)
 {
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+    ISystem *mockSystem = new MockSystem();
+    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
 
     assertNotEqual(nullptr, testMachine);
 
@@ -112,7 +116,8 @@ test(StateMachineTests, GetSetDisplayConfig)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+    ISystem *mockSystem = new MockSystem();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
 
     // Act
     testMachine->SetDisplayConfiguration(DisplayConfiguration::TempCAQI);
@@ -140,7 +145,8 @@ test(StateMachineTests, DisplayConfigLongPress)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+    ISystem *mockSystem = new MockSystem();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
     ConfigManager configManager = ConfigManager();
     
     // Act
@@ -174,7 +180,8 @@ test(StateMachineTests, RunMachine)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+    ISystem *mockSystem = new MockSystem();
+    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
 
     // ConfigStateMachines should begin with the SelectState.
     bool correctInitialState = false;
@@ -210,7 +217,8 @@ test(StateMachineTests, Machine_WriteToDisplay)
     // Arrange
     MockDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+    ISystem *mockSystem = new MockSystem();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
 
     String testLine1 = "Hello";
     String testLine2 = "Goodbye";
@@ -230,11 +238,12 @@ test(StateMachineTests, State_WriteToDisplay)
     // Arrange
     MockDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
+    ISystem *mockSystem = new MockSystem();
 
     // Main selection states
 
     // Act - ConfigStateMachine should begin with the SelectState.
-    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton);
+    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
 
     // Assert
     assertEqual(OLEDStrings::SelectStateLine1, mockDisplay->Line1);

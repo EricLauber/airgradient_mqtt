@@ -6,26 +6,34 @@
 #include "../Switchboard.h"
 #include "../Display/Display.h"
 #include "../Input/Input.h"
+#include "../Output/Output.h"
 #include "../Data/Data.h"
 #include "../StringResources.h"
 
 using namespace Display;
 using namespace Input;
+using namespace Output;
 using namespace Data;
 
 class ConfigStateMachine : public MachineBase
 {
     public:
-        ConfigStateMachine(IDisplay* display, IButton* button);
+        ConfigStateMachine(IDisplay* display, IButton* button, ISystem* system);
         void Run() override;
+        
+        // Display
         int WriteToDisplay(String line1, String line2, String line3);
         void SetDisplayConfiguration(DisplayConfiguration displayConfiguration);
         DisplayConfiguration GetDisplayConfiguration();
         void SaveDisplayConfiguration();
 
+        // SoC
+        void Restart();
+
     private:
         IDisplay* display;
         IButton* button;
+        ISystem* system;
         ConfigManager configManager;
         DisplayConfiguration selectedConfiguration;
 };

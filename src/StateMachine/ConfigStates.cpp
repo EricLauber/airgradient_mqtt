@@ -56,8 +56,10 @@ void RebootState::ShortPress(MachineBase* machine)
 //void RebootState::LongPress(MachineBase &machine)
 void RebootState::LongPress(MachineBase* machine)
 {
-    // build a wrapper around this call
-    //ESP.restart();
+    if (ConfigStateMachine *configMachine = TypeCast::machineCast<ConfigStateMachine *>(machine))
+    {
+        configMachine->Restart();
+    }
 }
 
 #pragma endregion Main_States

@@ -2,12 +2,14 @@
 
 using namespace Display;
 using namespace Input;
+using namespace Output;
 using namespace Data;
 
-ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button) : MachineBase(MachineType::CONFIG)
+ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button, ISystem* system) : MachineBase(MachineType::CONFIG)
 {
     this->display = display;
     this->button = button;
+    this->system = system;
     configManager = ConfigManager();
     
     // This is the default/starting state
@@ -20,7 +22,7 @@ void ConfigStateMachine::Run()
     // 1. Take inputs
 
     // idea - could the length of this timeout be based around the current state? no timeout for some states...
-    button->UpdateButtonInput(4000);
+    button->UpdateButtonInput(BUTTON_TIMEOUT);
 
     // 2. Pass inputs to State
     if (button->LongPressed)
@@ -89,3 +91,7 @@ void ConfigStateMachine::SaveDisplayConfiguration()
     SetState(SelectState::GetInstance());
 }
 
+void ConfigStateMachine::Restart()
+{
+    system->Restart();
+}

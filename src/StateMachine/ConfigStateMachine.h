@@ -30,6 +30,7 @@ class ConfigStateMachine : public MachineBase
         // SoC
         void Restart();
 
+
     private:
         IDisplay* display;
         IButton* button;

@@ -332,7 +332,8 @@ test(StateMachineTests, Reboot)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
+    //ISystem *mockSystem = new MockSystem();
+    MockSystem *mockSystem = new MockSystem();
     ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
     
     testMachine->SetState(RebootState::GetInstance());
@@ -341,7 +342,8 @@ test(StateMachineTests, Reboot)
     testMachine->GetState()->LongPress(testMachine);
 
     // Assert - todo - right now we just check that we got this far
-    assertTrue(true);
+    assertTrue(mockSystem->RestartCalled);
+    assertFalse(mockSystem->ResetCalled);
 }
 
 void setup()

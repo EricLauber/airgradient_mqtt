@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include <AUnit.h>
 #include <Data.h>
+#include <WString.h>
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -68,11 +69,46 @@ test(FlashDataManagerTests, ReadWriteLitleFS)
     assertEqual(testData2AsString, dataManager.ReadFromFile(testFilename));
 }
 
+test(FlashDataManagerTests, DeleteLitleFS)
+{
+    // Arrange
+    FlashDataManager dataManager = FlashDataManager();
+
+    String testFilename = "/myfile.json";
+    
+    DynamicJsonDocument testData1(1024);
+    testData1["name"] = "Ash Ketchum";
+    testData1["title"] = "Pokemon Master";
+    String testData1AsString;
+    serializeJson(testData1, testData1AsString);
+    // Create file to delete
+    dataManager.WriteToFile(testFilename, testData1);
+
+    // Act
+    bool result = dataManager.DeleteFile(testFilename);
+    
+    // Assert - LittleFS returns true on success
+    assertTrue(result);
+    assertEqual("", dataManager.ReadFromFile(testFilename));
+}
+
 test(ConfigManagerTests, Constructor)
 {
     ConfigManager* configManager = new ConfigManager();
 
     assertNotEqual(nullptr, configManager);
+}
+
+test(ConfigManagerTests, ClearData)
+{
+    // Arrange
+    ConfigManager configManager = ConfigManager();
+
+    // Act
+    bool result = configManager.ClearData();
+
+    // Assert
+    assertTrue(result);
 }
 
 test(ConfigManagerTests, ReadWriteDisplayConfiguration)
@@ -109,7 +145,7 @@ void setup()
     SERIAL_PORT_MONITOR.begin(115200);
     while (!SERIAL_PORT_MONITOR); // needed for Leonardo/Micro
 
-    TestRunner::setVerbosity(Verbosity::kAll);
+    //TestRunner::setVerbosity(Verbosity::kAll);
 }
 
 void loop()

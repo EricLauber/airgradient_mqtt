@@ -10,6 +10,7 @@ namespace Data
 
     bool FlashDataManager::WriteToAddress(int address, char data)
     {
+        // EEPROM returns true on success.
         EEPROM.write(address, data);
         return EEPROM.commit();
     }
@@ -31,12 +32,12 @@ namespace Data
             }
             else
             {
-                // todo - failure scenario
+                // on failure, do not set string
             }
         }
         else
         {
-            // todo - failure scenario
+            // on failure, do not set string
         }
 
         return fileContents;
@@ -60,6 +61,21 @@ namespace Data
         }
         
         return failed;
+    }
+
+    // todo - write tests to prove behavior when file exists or doesn't exist
+    bool FlashDataManager::DeleteFile(String filename)
+    {
+        if (FILE_SYSTEM.exists(filename))
+        {
+            // LittleFS returns true if there was a file to remove.
+            return FILE_SYSTEM.remove(filename);
+        }
+        else
+        {
+            // Operation succeeded in an intended way.
+            return true;
+        }
     }
 
     FlashDataManager::FlashDataManager()

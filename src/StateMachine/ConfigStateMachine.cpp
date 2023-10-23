@@ -95,3 +95,8 @@ void ConfigStateMachine::Restart()
 {
     system->Restart();
 }
+
+void ConfigStateMachine::ClearData()
+{
+    configManager.ClearData();
+}

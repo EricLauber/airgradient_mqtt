@@ -346,6 +346,8 @@ test(StateMachineTests, Reboot)
     assertFalse(mockSystem->ResetCalled);
 }
 
+// todo - create a mock ConfigManager to test that calls against it are successful.
+
 void setup()
 {
 #if ! defined(EPOXY_DUINO)

@@ -1,5 +1,7 @@
 #include "ConfigManager.h"
 
+#include "Arduino.h"
+
 namespace Data
 {
     ConfigManager::ConfigManager()
@@ -45,6 +47,22 @@ namespace Data
     int ConfigManager::WriteServerConfiguration(std::map<String, String> configuration, NetworkProtocol protocol)
     {
         return 0;
+    }
+
+    bool ConfigManager::ClearData()
+    {
+        bool result = true;
+
+        // Reset DisplayConfiguration to default. EEPROM returns true on success.
+        result &= WriteDisplayConfigurationMode(DisplayConfiguration::TempCμgm3);
+
+        // Clear LittleFS files. LittleFS returns true on success.
+        result &= dataManager.DeleteFile(mqttConfigFile);
+        result &= dataManager.DeleteFile(webAPIConfigFile);
+
+        // todo - access to wifi to clear that, too
+
+        return result;
     }
 }
 

@@ -15,12 +15,15 @@ namespace Data
         private:
             FlashDataManager dataManager;
             int address = 4;
+            String mqttConfigFile = "/mqttConfig.json";
+            String webAPIConfigFile = "/webAPIConfig.json";
 
         public:
             DisplayConfiguration ReadDisplayConfigurationMode();
             bool WriteDisplayConfigurationMode(DisplayConfiguration mode);
             std::map<String, String> ReadServerConfiguration(NetworkProtocol protocol);
             int WriteServerConfiguration(std::map<String, String> configuration, NetworkProtocol protocol);
+            bool ClearData();
 
             ConfigManager();
     };

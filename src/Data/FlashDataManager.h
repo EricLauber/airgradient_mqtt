@@ -14,6 +14,7 @@ namespace Data
             bool WriteToAddress(int address, char data);
             String ReadFromFile(String filename);
             bool WriteToFile(String filename, DynamicJsonDocument json);
+            bool DeleteFile(String filename);
 
             FlashDataManager();
     };

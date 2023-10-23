@@ -30,6 +30,8 @@ class ConfigStateMachine : public MachineBase
         // SoC
         void Restart();
 
+        // Flash
+        void ClearData();
 
     private:
         IDisplay* display;

@@ -31,7 +31,7 @@ void ConfigStateMachine::Run()
         button->Reset();
     }
     else if (button->SingleClicked)
-    {;
+    {
         state->ShortPress(this);
         button->Reset();
     }

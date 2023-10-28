@@ -4,16 +4,12 @@
 #include <AUnit.h>
 #include <AUnitVerbose.h>
 #include <StateMachine.h>
-// #include "../Mocks/MockDisplay.h"
+#include "../Mocks/MockDisplay.h"
 #include "../Mocks/MockButton.h"
-#include "MockDisplay.h"
-//#include "MockButton.h"
 #include "../Mocks/MockSystem.h"
 
 using aunit::TestRunner;
 using aunit::Verbosity;
-// using namespace Input;
-// using namespace Output;
 // TODO namespace not implemented yet
 //using namespace StateMachine;
 

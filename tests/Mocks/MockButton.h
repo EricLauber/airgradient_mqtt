@@ -9,10 +9,14 @@ namespace Input
     {
         public:
             // Get button feedback for the pin. Option to set a maximum time in milliseconds to get input
-            void UpdateButtonInput(int timeout) override;
+            void UpdateButtonInput(int timeout = 0) override { };
 
             // Reset button status
-            void Reset() override;
+            void Reset() override
+            {
+                this->SingleClicked = false;
+                this->LongPressed = false;
+            };
     };
 }
 

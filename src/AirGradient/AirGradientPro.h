@@ -21,6 +21,8 @@ class AirGradientPro
 
     public:
         AirGradientPro(IDisplay* display, IButton* button, ISystem* system);
+        void Startup();
+        void Run();
 };
 
 

@@ -15,6 +15,34 @@ AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISystem* syst
 
 void AirGradientPro::Startup()
 {
+    Serial.begin(115200);
+
+    WriteToDisplay(
+        OLEDStrings::StartupConfigPromptLine1,
+        OLEDStrings::StartupConfigPromptLine2,
+        OLEDStrings::StartupConfigPromptLine3
+    );
+
+    button->UpdateButtonInput(BUTTON_TIMEOUT);
+
+    pushButton->UpdateButtonInput(4000);
+    if (!pushButton->LongPressed && !pushButton->SingleClicked)
+    {
+#if DEBUG_ENABLED == 1
+    Serial.println("Button press detected. Entering configuration mode.");
+#endif
+        RunConfigStateMachine();
+    }
+    else
+    {
+#if DEBUG_ENABLED == 1
+    Serial.println("No button detected. Begin sensor setup.");
+#endif
+
+
+    }
+
+
     /*
         1. Detect button push
             if true, start ConfigStateMachine
@@ -48,4 +76,20 @@ void AirGradientPro::Run()
         Establish WiFi Connectivity
         Send data to array of servers
     */
+}
+
+int AirGradientPro::WriteToDisplay(String line1, String line2, String line3)
+{
+    return display->WriteLines(line1, line2, line3);
+}
+
+void AirGradientPro::RunConfigStateMachine()
+{
+    configStateMachine = new ConfigStateMachine(display, button, system);
+    // Loop forever, until the user selects the Reboot option.
+    for (;;)
+    {
+        configStateMachine.Run();
+        delay(100);
+    }
 }

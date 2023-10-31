@@ -65,6 +65,9 @@ This implementation writes to an MQTT server of your choice.
 #include "src/Input/Input.h"
 #include "src/Display/Display.h"
 #include "src/Display/Monochrome/U8G2Display.h"
+#include "src/Output/Output.h"
+//#include "src/Output/ESP8266/D1Mini.h"
+#include "src/AirGradient/AirGradientPro.h"
 //#include "ConfigManager.h"
 //#include "StateMachine.h"
 //#include "ConfigStateMachine.h"
@@ -73,6 +76,8 @@ using namespace Sampling;
 using namespace Display;
 using namespace Display::Monochrome;
 using namespace Input;
+using namespace Output;
+//using namespace Output::ESP8266;
 
 AirGradient ag = AirGradient();
 SensirionI2CSgp41 sgp41;
@@ -92,6 +97,12 @@ IDisplay *display;
 
 // This interface handles button input
 IButton *pushButton;
+
+// This interface provides access to SOC functionality.
+ISystem *oursystem;
+
+// The big one!
+//AirGradientPro airGradientPro;
 
 // Display bottom right
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/U8X8_PIN_NONE);
@@ -152,30 +163,16 @@ void setup()
     // dependency injection test
     IDisplay *display = new U8G2Display(u8g2);
     IButton *pushButton = new Button(BUTTON_PIN);
+    //ISystem *system = new D1Mini();
+    //ISystem *system;// = new D1Mini();
+    AirGradientPro *airGradientPro = new AirGradientPro(display, pushButton, oursystem);
+
+    airGradientPro->Startup();
 
 
-    // TestDI depends = TestDI(display);
-    // depends.DoTheTest();
 
-    delay(10000);
 
-    // Alert the user that they have a chance to enter config mode
-    updateOLED2(
-        OLEDStrings::StartupConfigPromptLine1,
-        OLEDStrings::StartupConfigPromptLine2,
-        OLEDStrings::StartupConfigPromptLine3);
 
-    //Button pushButton = Button(BUTTON_PIN);
-    pushButton->UpdateButtonInput(4000);
-    if (!pushButton->LongPressed && !pushButton->SingleClicked)
-    {
-        // User has chosen to enter configuration mode
-        updateOLED2(
-            OLEDStrings::EnteringConfigLine1,
-            OLEDStrings::EnteringConfigLine2,
-            OLEDStrings::EnteringConfigLine3);
-    }
-    Serial.println("No button detected.");
 
     u8g2.begin();
     sht.init();

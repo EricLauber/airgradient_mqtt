@@ -20,9 +20,7 @@ ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button, ISyst
 void ConfigStateMachine::Run()
 {
     // 1. Take inputs
-
-    // idea - could the length of this timeout be based around the current state? no timeout for some states...
-    button->UpdateButtonInput(BUTTON_TIMEOUT);
+    button->UpdateButtonInput();
 
     // 2. Pass inputs to State
     if (button->LongPressed)
@@ -35,9 +33,6 @@ void ConfigStateMachine::Run()
         state->ShortPress(this);
         button->Reset();
     }
-
-
-    // 3. If a state transition occurs, take action based on the transition
 }
 
 int ConfigStateMachine::WriteToDisplay(String line1, String line2, String line3)

@@ -10,7 +10,7 @@ namespace Input
             bool SingleClicked;
             bool LongPressed;
 
-            virtual void UpdateButtonInput(int timeout) = 0;
+            virtual void UpdateButtonInput(int timeout = 0) = 0;
             virtual void Reset() = 0;
     };
 }

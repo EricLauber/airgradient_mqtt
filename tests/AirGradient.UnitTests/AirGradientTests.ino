@@ -19,7 +19,6 @@ test(AirGradientTests, Constructor)
     ISystem *mockSystem = new MockSystem();
 
     AirGradientPro *airGradient = new AirGradientPro(mockDisplay, mockButton, mockSystem);
-
     assertNotEqual(nullptr, airGradient);
 }
 

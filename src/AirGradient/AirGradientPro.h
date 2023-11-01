@@ -19,7 +19,7 @@ class AirGradientPro
         IDisplay* display;
         IButton* button;
         ISystem* system;
-        ConfigStateMachine configStateMachine;
+        //ConfigStateMachine* configStateMachine;
 
     public:
         AirGradientPro(IDisplay* display, IButton* button, ISystem* system);

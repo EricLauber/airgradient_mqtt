@@ -165,9 +165,10 @@ void setup()
     IButton *pushButton = new Button(BUTTON_PIN);
     //ISystem *system = new D1Mini();
     //ISystem *system;// = new D1Mini();
-    AirGradientPro *airGradientPro = new AirGradientPro(display, pushButton, oursystem);
-
-    airGradientPro->Startup();
+    // AirGradientPro *airGradientPro = new AirGradientPro(display, pushButton, oursystem);
+    // airGradientPro->Startup();
+    AirGradientPro airGradientPro = AirGradientPro(display, pushButton, oursystem);
+    airGradientPro.Startup();
 
 
 

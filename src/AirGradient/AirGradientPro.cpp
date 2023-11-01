@@ -25,8 +25,8 @@ void AirGradientPro::Startup()
 
     button->UpdateButtonInput(BUTTON_TIMEOUT);
 
-    pushButton->UpdateButtonInput(4000);
-    if (!pushButton->LongPressed && !pushButton->SingleClicked)
+    button->UpdateButtonInput(4000);
+    if (!button->LongPressed && !button->SingleClicked)
     {
 #if DEBUG_ENABLED == 1
     Serial.println("Button press detected. Entering configuration mode.");
@@ -85,10 +85,12 @@ int AirGradientPro::WriteToDisplay(String line1, String line2, String line3)
 
 void AirGradientPro::RunConfigStateMachine()
 {
-    configStateMachine = new ConfigStateMachine(display, button, system);
+    //configStateMachine = new ConfigStateMachine(display, button, system);
+    ConfigStateMachine configStateMachine = ConfigStateMachine(display, button, system);
     // Loop forever, until the user selects the Reboot option.
     for (;;)
     {
+        //configStateMachine->Run();
         configStateMachine.Run();
         delay(100);
     }

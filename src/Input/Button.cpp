@@ -9,7 +9,7 @@ namespace Input
     }
 
     // Get button feedback for the pin. Option to set a maximum time in milliseconds to get input
-    void Button::UpdateButtonInput(int timeout = 0)
+    void Button::UpdateButtonInput(int timeout)
     {
         SetupInitialLoopValues();
 

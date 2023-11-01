@@ -9,7 +9,7 @@
 using aunit::TestRunner;
 using aunit::Verbosity;
 using namespace Output;
-using namespace Output::ESP8266;
+using namespace Output::blah;
 
 test(D1MiniTests, Constructor)
 {

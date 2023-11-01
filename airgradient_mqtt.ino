@@ -66,7 +66,7 @@ This implementation writes to an MQTT server of your choice.
 #include "src/Display/Display.h"
 #include "src/Display/Monochrome/U8G2Display.h"
 #include "src/Output/Output.h"
-//#include "src/Output/ESP8266/D1Mini.h"
+#include "src/Output/ESP8266/D1Mini.h"
 #include "src/AirGradient/AirGradientPro.h"
 //#include "ConfigManager.h"
 //#include "StateMachine.h"
@@ -163,7 +163,7 @@ void setup()
     // dependency injection test
     IDisplay *display = new U8G2Display(u8g2);
     IButton *pushButton = new Button(BUTTON_PIN);
-    //ISystem *system = new D1Mini();
+    ISystem *oursystem = new blah::D1Mini();
     //ISystem *system;// = new D1Mini();
     // AirGradientPro *airGradientPro = new AirGradientPro(display, pushButton, oursystem);
     // airGradientPro->Startup();

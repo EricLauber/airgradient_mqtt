@@ -6,7 +6,7 @@
 #include <AirGradientPro.h>
 #include "../Mocks/MockDisplay.h"
 #include "../Mocks/MockButton.h"
-#include "../Mocks/MockSystem.h"
+#include "../Mocks/MockSOC.h"
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -16,9 +16,9 @@ test(AirGradientTests, Constructor)
 {
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
+    ISOC *mockSOC = new MockSOC();
 
-    AirGradientPro *airGradient = new AirGradientPro(mockDisplay, mockButton, mockSystem);
+    AirGradientPro *airGradient = new AirGradientPro(mockDisplay, mockButton, mockSOC);
     assertNotEqual(nullptr, airGradient);
 }
 

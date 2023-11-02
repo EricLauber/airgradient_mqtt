@@ -4,9 +4,9 @@
 include ../../.env
 
 APP_NAME := D1MiniTests
-ARDUINO_LIBS := AUnit Output ESP8266
+ARDUINO_LIBS := AUnit SOC Wemos
 ARDUINO_LIB_DIRS := \
 	../../src \
-	../../src/Output	
+	../../src/SOC
 EPOXY_CORE := EPOXY_CORE_ESP8266
 include $(arduino_ide_dir)/libraries/EpoxyDuino/EpoxyDuino.mk

@@ -6,7 +6,7 @@
 #include <StateMachine.h>
 #include "../Mocks/MockDisplay.h"
 #include "../Mocks/MockButton.h"
-#include "../Mocks/MockSystem.h"
+#include "../Mocks/MockSOC.h"
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -17,8 +17,8 @@ test(StateMachineTests, Constructor_and_State_Transitions)
 {
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
-    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    ISOC *mockSOC = new MockSOC();
+    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSOC);
 
     assertNotEqual(nullptr, testMachine);
 
@@ -114,8 +114,8 @@ test(StateMachineTests, GetSetDisplayConfig)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
-    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    ISOC *mockSOC = new MockSOC();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSOC);
 
     // Act
     testMachine->SetDisplayConfiguration(DisplayConfiguration::TempCAQI);
@@ -143,8 +143,8 @@ test(StateMachineTests, DisplayConfigLongPress)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
-    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    ISOC *mockSOC = new MockSOC();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSOC);
     ConfigManager configManager = ConfigManager();
     
     // Act
@@ -178,8 +178,8 @@ test(StateMachineTests, RunMachine)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
-    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    ISOC *mockSOC = new MockSOC();
+    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSOC);
 
     // ConfigStateMachines should begin with the SelectState.
     bool correctInitialState = false;
@@ -215,8 +215,8 @@ test(StateMachineTests, Machine_WriteToDisplay)
     // Arrange
     MockDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
-    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    ISOC *mockSOC = new MockSOC();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSOC);
 
     String testLine1 = "Hello";
     String testLine2 = "Goodbye";
@@ -236,12 +236,12 @@ test(StateMachineTests, State_WriteToDisplay)
     // Arrange
     MockDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    ISystem *mockSystem = new MockSystem();
+    ISOC *mockSOC = new MockSOC();
 
     // Main selection states
 
     // Act - ConfigStateMachine should begin with the SelectState.
-    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    MachineBase *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSOC);
 
     // Assert
     assertEqual(OLEDStrings::SelectStateLine1, mockDisplay->Line1);
@@ -330,9 +330,9 @@ test(StateMachineTests, Reboot)
     // Arrange
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
-    //ISystem *mockSystem = new MockSystem();
-    MockSystem *mockSystem = new MockSystem();
-    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSystem);
+    //ISOC *mockSOC = new MockSOC();
+    MockSOC *mockSOC = new MockSOC();
+    ConfigStateMachine *testMachine = new ConfigStateMachine(mockDisplay, mockButton, mockSOC);
     
     testMachine->SetState(RebootState::GetInstance());
     
@@ -340,8 +340,8 @@ test(StateMachineTests, Reboot)
     testMachine->GetState()->LongPress(testMachine);
 
     // Assert - todo - right now we just check that we got this far
-    assertTrue(mockSystem->RestartCalled);
-    assertFalse(mockSystem->ResetCalled);
+    assertTrue(mockSOC->RestartCalled);
+    assertFalse(mockSOC->ResetCalled);
 }
 
 // todo - create a mock ConfigManager to test that calls against it are successful.

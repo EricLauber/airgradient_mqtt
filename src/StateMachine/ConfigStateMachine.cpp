@@ -2,14 +2,14 @@
 
 using namespace Display;
 using namespace Input;
-using namespace Output;
+using namespace SOC;
 using namespace Data;
 
-ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button, ISystem* system) : MachineBase(MachineType::CONFIG)
+ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button, ISOC* soc) : MachineBase(MachineType::CONFIG)
 {
     this->display = display;
     this->button = button;
-    this->system = system;
+    this->soc = soc;
     configManager = ConfigManager();
     
     // This is the default/starting state
@@ -88,7 +88,7 @@ void ConfigStateMachine::SaveDisplayConfiguration()
 
 void ConfigStateMachine::Restart()
 {
-    system->Restart();
+    soc->Restart();
 }
 
 void ConfigStateMachine::ClearData()

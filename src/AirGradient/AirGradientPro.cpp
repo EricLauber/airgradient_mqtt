@@ -2,14 +2,14 @@
 
 using namespace Display;
 using namespace Input;
-using namespace Output;
+using namespace SOC;
 using namespace Data;
 
-AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISystem* system)
+AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISOC* soc)
 {
     this->display = display;
     this->button = button;
-    this->system = system;
+    this->soc = soc;
     
 }
 
@@ -85,8 +85,8 @@ int AirGradientPro::WriteToDisplay(String line1, String line2, String line3)
 
 void AirGradientPro::RunConfigStateMachine()
 {
-    //configStateMachine = new ConfigStateMachine(display, button, system);
-    ConfigStateMachine configStateMachine = ConfigStateMachine(display, button, system);
+    //configStateMachine = new ConfigStateMachine(display, button, soc);
+    ConfigStateMachine configStateMachine = ConfigStateMachine(display, button, soc);
     // Loop forever, until the user selects the Reboot option.
     for (;;)
     {

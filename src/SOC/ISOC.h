@@ -1,14 +1,15 @@
-#ifndef ISystem_h
-#define ISystem_h
+#ifndef ISOC_h
+#define ISOC_h
 
-namespace Output
+namespace SOC
 {
     // This interface provides output to the system.
-    class ISystem
+    class ISOC
     {
         public:
             virtual void Reset() = 0;
             virtual void Restart() = 0;
+            virtual int GetChipID() = 0;
     };
 }
 

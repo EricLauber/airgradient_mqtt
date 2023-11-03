@@ -2,7 +2,6 @@
 #define D1Mini_h
 
 #include "../ISOC.h"
-#include <ESP.h>
 
 // todo - change Output to something like SOC and ESP8266/blah namespace to Wemos or something to that effect
 using namespace SOC;

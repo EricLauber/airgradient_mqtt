@@ -62,10 +62,10 @@ This implementation writes to an MQTT server of your choice.
 //#include "src/Sampling/QualitySample.h"
 #include "src/Sampling/Sampling.h"
 #include "src/MQTTConfiguration.h"
-#include "src/Input/Input.h"
 #include "src/Display/Display.h"
 #include "src/Display/Monochrome/U8G2Display.h"
 #include "src/IO/IO.h"
+#include "src/IO/Input/Button.h"
 #include "src/IO/Wemos/D1Mini.h"
 #include "src/AirGradient/AirGradientPro.h"
 //#include "ConfigManager.h"
@@ -75,8 +75,8 @@ This implementation writes to an MQTT server of your choice.
 using namespace Sampling;
 using namespace Display;
 using namespace Display::Monochrome;
-using namespace Input;
 using namespace IO;
+using namespace IO::Input;
 
 AirGradient ag = AirGradient();
 SensirionI2CSgp41 sgp41;

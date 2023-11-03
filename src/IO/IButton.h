@@ -1,7 +1,7 @@
 #ifndef IButton_h
 #define IButton_h
 
-namespace Input
+namespace IO
 {
     // This interface provides input from one button.
     class IButton

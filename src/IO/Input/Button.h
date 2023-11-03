@@ -1,10 +1,10 @@
 #ifndef Button_h
 #define Button_h
 
-#include "IButton.h"
+#include "../IButton.h"
 #include "Arduino.h"
 
-namespace Input
+namespace IO::Input
 {
     class Button : public IButton
     {

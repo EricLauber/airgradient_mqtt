@@ -4,7 +4,8 @@
 include ../../.env
 
 APP_NAME := InputTests
-ARDUINO_LIBS := AUnit Input
+ARDUINO_LIBS := AUnit IO Input
 ARDUINO_LIB_DIRS := \
-	../../src
+	../../src \
+	../../src/IO
 include $(arduino_ide_dir)/libraries/EpoxyDuino/EpoxyDuino.mk

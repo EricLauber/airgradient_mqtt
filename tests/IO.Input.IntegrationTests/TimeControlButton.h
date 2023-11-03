@@ -1,9 +1,9 @@
 #ifndef TimeControlButton_h
 #define TimeControlButton_h
 
-#include "Button.h"
+#include <Button.h>
 
-namespace Input
+namespace IO::Input
 {
     // Inherits the Button object so we can mock Arduino behavior and test Button functions
     class TimeControlButton : public Button

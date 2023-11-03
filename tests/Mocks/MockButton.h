@@ -1,9 +1,9 @@
 #ifndef MockButton_h
 #define MockButton_h
 
-#include "IButton.h"
+#include <IButton.h>
 
-namespace Input
+namespace IO
 {
     class MockButton : public IButton
     {

@@ -3,12 +3,13 @@
 #include <Arduino.h>
 #include <AUnit.h>
 #include <AUnitVerbose.h>
-#include <Input.h>
+#include <IO.h>
 #include "TimeControlButton.h"
 
 using aunit::TestRunner;
 using aunit::Verbosity;
-using namespace Input;
+using namespace IO;
+using namespace IO::Input;
 
 #define BUTTON_PIN D7
 

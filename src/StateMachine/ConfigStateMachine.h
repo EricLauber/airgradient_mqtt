@@ -5,13 +5,11 @@
 #include "StateBase.h"
 #include "../Switchboard.h"
 #include "../Display/Display.h"
-#include "../Input/Input.h"
 #include "../IO/IO.h"
 #include "../Data/Data.h"
 #include "../StringResources.h"
 
 using namespace Display;
-using namespace Input;
 using namespace IO;
 using namespace Data;
 

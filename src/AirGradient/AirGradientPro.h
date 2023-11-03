@@ -4,12 +4,10 @@
 #include "../Switchboard.h"
 #include <Arduino.h>
 #include "../Display/Display.h"
-#include "../Input/Input.h"
 #include "../IO/IO.h"
 #include "../StateMachine/StateMachine.h"
 
 using namespace Display;
-using namespace Input;
 using namespace IO;
 using namespace Data;
 

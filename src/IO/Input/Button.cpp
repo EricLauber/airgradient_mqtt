@@ -1,6 +1,6 @@
 #include "Button.h"
 
-namespace Input
+namespace IO::Input
 {
     Button::Button(int pin)
     {

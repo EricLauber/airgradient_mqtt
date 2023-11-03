@@ -1,7 +1,6 @@
 #include "ConfigStateMachine.h"
 
 using namespace Display;
-using namespace Input;
 using namespace IO;
 using namespace Data;
 

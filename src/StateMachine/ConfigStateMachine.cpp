@@ -2,10 +2,10 @@
 
 using namespace Display;
 using namespace Input;
-using namespace SOC;
+using namespace IO;
 using namespace Data;
 
-ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button, ISOC* soc) : MachineBase(MachineType::CONFIG)
+ConfigStateMachine::ConfigStateMachine(IDisplay* display, IButton* button, ISoC* soc) : MachineBase(MachineType::CONFIG)
 {
     this->display = display;
     this->button = button;

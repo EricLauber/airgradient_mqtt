@@ -1,14 +1,13 @@
 #ifndef D1Mini_h
 #define D1Mini_h
 
-#include "../ISOC.h"
+#include "../ISoC.h"
 
-// todo - change Output to something like SOC and ESP8266/blah namespace to Wemos or something to that effect
-using namespace SOC;
+using namespace IO;
 
-namespace SOC::Wemos
+namespace IO::Wemos
 {
-    class D1Mini : public ISOC
+    class D1Mini : public ISoC
     {
         public:
             void Reset() override { ESP.reset(); };

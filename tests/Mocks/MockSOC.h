@@ -1,11 +1,11 @@
-#ifndef MockSOC_h
-#define MockSOC_h
+#ifndef MockSoC_h
+#define MockSoC_h
 
-#include "ISOC.h"
+#include "ISoC.h"
 
-namespace SOC
+namespace IO
 {
-    class MockSOC : public ISOC
+    class MockSoC : public ISoC
     {
         public:
             bool ResetCalled = false;

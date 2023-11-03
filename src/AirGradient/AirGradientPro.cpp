@@ -2,10 +2,10 @@
 
 using namespace Display;
 using namespace Input;
-using namespace SOC;
+using namespace IO;
 using namespace Data;
 
-AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISOC* soc)
+AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISoC* soc)
 {
     this->display = display;
     this->button = button;

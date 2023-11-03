@@ -1,10 +1,10 @@
-#ifndef ISOC_h
-#define ISOC_h
+#ifndef ISoC_h
+#define ISoC_h
 
-namespace SOC
+namespace IO
 {
     // This interface provides output to the system.
-    class ISOC
+    class ISoC
     {
         public:
             virtual void Reset() = 0;

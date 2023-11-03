@@ -5,12 +5,12 @@
 #include <Arduino.h>
 #include "../Display/Display.h"
 #include "../Input/Input.h"
-#include "../SOC/SOC.h"
+#include "../IO/IO.h"
 #include "../StateMachine/StateMachine.h"
 
 using namespace Display;
 using namespace Input;
-using namespace SOC;
+using namespace IO;
 using namespace Data;
 
 class AirGradientPro
@@ -18,11 +18,11 @@ class AirGradientPro
     private:
         IDisplay* display;
         IButton* button;
-        ISOC* soc;
+        ISoC* soc;
         //ConfigStateMachine* configStateMachine;
 
     public:
-        AirGradientPro(IDisplay* display, IButton* button, ISOC* soc);
+        AirGradientPro(IDisplay* display, IButton* button, ISoC* soc);
         void Startup();
         void Run();
 

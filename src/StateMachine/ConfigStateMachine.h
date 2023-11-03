@@ -6,19 +6,19 @@
 #include "../Switchboard.h"
 #include "../Display/Display.h"
 #include "../Input/Input.h"
-#include "../SOC/SOC.h"
+#include "../IO/IO.h"
 #include "../Data/Data.h"
 #include "../StringResources.h"
 
 using namespace Display;
 using namespace Input;
-using namespace SOC;
+using namespace IO;
 using namespace Data;
 
 class ConfigStateMachine : public MachineBase
 {
     public:
-        ConfigStateMachine(IDisplay* display, IButton* button, ISOC* soc);
+        ConfigStateMachine(IDisplay* display, IButton* button, ISoC* soc);
         void Run() override;
         
         // Display
@@ -36,7 +36,7 @@ class ConfigStateMachine : public MachineBase
     private:
         IDisplay* display;
         IButton* button;
-        ISOC* soc;
+        ISoC* soc;
         ConfigManager configManager;
         DisplayConfiguration selectedConfiguration;
 };

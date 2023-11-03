@@ -4,7 +4,7 @@
 include ../../.env
 
 APP_NAME := AirGradientTests
-ARDUINO_LIBS := AUnit EpoxyEepromEsp EpoxyFS EPOXY_CORE_ESP8266 ArduinoJson AirGradient StateMachine Display Input SOC Data 
+ARDUINO_LIBS := AUnit EpoxyEepromEsp EpoxyFS EPOXY_CORE_ESP8266 ArduinoJson AirGradient StateMachine Display Input IO Data 
 ARDUINO_LIB_DIRS := \
 	../../src
 include $(arduino_ide_dir)/libraries/EpoxyDuino/EpoxyDuino.mk

@@ -3,26 +3,26 @@
 #include <Arduino.h>
 #include <AUnit.h>
 #include <AUnitVerbose.h>
-#include <SOC.h>
+#include <IO.h>
 #include <D1Mini.h>
 
 using aunit::TestRunner;
 using aunit::Verbosity;
-using namespace SOC;
-using namespace SOC::Wemos;
+using namespace IO;
+using namespace IO::Wemos;
 
 test(D1MiniTests, Constructor)
 {
-    ISOC *testSOC = new D1Mini();
+    ISoC *testSoC = new D1Mini();
 
-    assertNotEqual(nullptr, testSOC);
+    assertNotEqual(nullptr, testSoC);
 }
 
 test(D1MiniTests, GetChipID)
 {
-    ISOC *testSOC = new D1Mini();
+    ISoC *testSoC = new D1Mini();
 
-    assertEqual(0, testSOC->GetChipID());
+    assertEqual(0, testSoC->GetChipID());
 }
 
 void setup()

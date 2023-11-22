@@ -1,4 +1,4 @@
-#Project information
+# Project information
 site_name: AirGradient Arduino MQTT
 site_url: https://ericlauber.github.io/airgradient_mqtt/
 site_author: Eric Lauber
@@ -37,7 +37,14 @@ theme:
     - navigation.sections
     
     # - navigation.tabs.sticky
-    
+
+# Extensions
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   
 # Page Tree
 nav:

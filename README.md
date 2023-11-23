@@ -1,6 +1,6 @@
 # AirGradient MQTT for Arduino
 
-<img src="./assets/images/airgradient.png" align="right" width="200">
+<img src="./docs/assets/images/airgradient.png" align="right" width="200">
 
 This is an Arduino software implementation for the AirGradient DIY Air Quality Sensor Pro, PCB version 4.2.
 

@@ -38,6 +38,8 @@ theme:
     
     # - navigation.tabs.sticky
 
+    - toc.follow
+
 # Extensions
 markdown_extensions:
   - pymdownx.superfences:
@@ -52,8 +54,10 @@ nav:
 
   - Implementation:
     - Getting Started: setup.md
-    - Details: implementationdetails.md
-    - Automated Tests: tests.md
+    - Details: 
+      - implementation/index.md
+      - Run-Time Type Information: implementation/rtti.md
+      - Startup State Machine: implementation/configstatemachine.md
 
   - Integrations:
     - 'Home Assistant': homeassistant.md

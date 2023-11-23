@@ -61,9 +61,11 @@ mqtt:
 
 ## Visualization
 
-Here are two sample visualizations I build for Home Assistant. TODO - add screenshots.
+Here are two sample visualizations I build for Home Assistant.
 
-AQI Gauge Card
+### AQI Gauge Card
+
+<img src="../assets/images/aqi_meter.png" align="right">
 
 ```yaml
 type: gauge
@@ -85,7 +87,7 @@ segments:
     color: '#a2064a'
 ```
 
-Metrics List
+### Metrics List
 
 ```yaml
 type: entities

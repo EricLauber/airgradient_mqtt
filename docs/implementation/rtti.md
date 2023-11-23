@@ -1,8 +1,8 @@
-## Impementation Details - RTTI
+# Run-Time Type Information
 
 For this sketch I tried to implement and apply Object Oriented Programming techniques were it made sense. I had thought I might reuse the State Machine concept, and built `MachineBase` and `StateBase` to be extendable.
 
-The different `ConfigStateMachine` states like `ClearState` implement `StateBase` and its references to `MachineBase`, but require awareness of the `ConfigStateMachine` in order to write to the OLED display. To do this, `ClearState` requires Run-time type information (RTTI) so that it can `dynamic_cast<>` a `MachineBase` to `ConfigStateMachine`.
+The different `ConfigStateMachine` states like `ClearState` implement `StateBase` and its references to `MachineBase`, but require awareness of the `ConfigStateMachine` in order to write to the OLED display. To do this, `ClearState` requires Run-Time Type Information (RTTI) so that it can `dynamic_cast<>` a `MachineBase` to `ConfigStateMachine`.
 
 Many embedded systems do not support RTTI, and for this reason the Arduino compiler disables it by default. An ESP8266 **can** support RTTI, but to provide Arduino support, the ESP Arduino core implementation avoids its use and implements `TypeConversionFunctions` combined with Enums. Applied to our case, `MachineBase` gets a `MachineType` Enum. Other objects and classes can read the Enum and determine what type the `MachineBase` implementation it is.
 

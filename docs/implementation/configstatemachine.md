@@ -31,20 +31,20 @@ stateDiagram
 | State | Description   |
 | :--- | :---           |
 | **Select State** | This state lets the user know they are in the Config State Machine and that they should cycle through and select an option.|
-| **Edit Display Config State** | Long-pressing this state will enter the Display Config flow - [see the section below for details](./#edit-the-display-configuration).|
+| **Edit Display Config State** | Long-pressing this state will enter the Display Config flow - [see the section below for details](#edit-the-display-configuration).|
 | **Clear Config and WiFi Data State** | Long-pressing this state will clear the local storage, erasing the saved Display Config State, WiFi configuration, and MQTT configuration.|
 | **Reboot State** | Long-pressing this state will restart the AirGradient equivalent to disconnecting and reconnecting the power. User should choose this to exit the flow.|
 
 ## Edit the Display Configuration
 
-If users long-press the **Edit Display Config State** they will enter this flow. The user may select what the Display should show during regular operation. Short-pressing will cycle through each option. Long-pressing on an option will save that to the local storage, and return the user to the **Select State** from the [previous flow](./#select-an-option).
+If users long-press the **Edit Display Config State** they will enter this flow. The user may select what the Display should show during regular operation. Short-pressing will cycle through each option. Long-pressing on an option will save that to the local storage, and return the user to the **Select State** from the [previous flow](#select-an-option).
 
 ```mermaid
 stateDiagram
     direction LR
 
     DisplayConfigTempCμgm3: Celsius and μgm3
-    DisplayConfigTempFμgm3: Fahrenheit μgm3
+    DisplayConfigTempFμgm3: Fahrenheit and μgm3
     DisplayConfigTempCAQI: Celsius and US AQI
     DisplayConfigTempFAQI: Fahrenheit and US AQI
 

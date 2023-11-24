@@ -52,12 +52,15 @@ markdown_extensions:
 nav:
   - Home: index.md
 
+  - What is AirGradient?: intro.md
+
   - Implementation:
     - Getting Started: setup.md
     - Details: 
       - implementation/index.md
       - Run-Time Type Information: implementation/rtti.md
       - Startup State Machine: implementation/configstatemachine.md
+      - Networking: implementation/networking.md
 
   - Integrations:
     - 'Home Assistant': homeassistant.md

@@ -54,6 +54,8 @@ nav:
 
   - What is AirGradient?: intro.md
 
+  - Goals of this Project: goals.md
+
   - Implementation:
     - Getting Started: setup.md
     - Details: 

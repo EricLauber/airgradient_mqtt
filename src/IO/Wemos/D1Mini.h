@@ -2,6 +2,7 @@
 #define D1Mini_h
 
 #include "../ISoC.h"
+#include "../../Switchboard.h"
 
 using namespace IO;
 

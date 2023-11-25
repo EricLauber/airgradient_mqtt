@@ -4,7 +4,7 @@
 include ../../.env
 
 APP_NAME := D1MiniTests
-ARDUINO_LIBS := AUnit IO Wemos
+ARDUINO_LIBS := AUnit IO Wemos EpoxyEepromEsp EpoxyFS
 ARDUINO_LIB_DIRS := \
 	../../src \
 	../../src/IO

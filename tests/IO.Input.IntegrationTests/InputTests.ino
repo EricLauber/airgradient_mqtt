@@ -5,6 +5,8 @@
 #include <AUnitVerbose.h>
 #include <IO.h>
 #include "TimeControlButton.h"
+#include <SensirionHTSensor.h>
+#include <WString.h>
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -134,7 +136,6 @@ test(TimeControlButtonTests, LongPress)
     testButton->ReadButtonData();
 
     // Loop 3
-    Serial.println("loop 4");
     testButton->SetCurrentMillis(5000);
     // release the button
     digitalReadValue(BUTTON_PIN, 1);
@@ -145,6 +146,33 @@ test(TimeControlButtonTests, LongPress)
     assertTrue(testButton->LongPressed);
 }
 
+test(SensirionHTSensorTests, Constructor)
+{
+    IHTSensor *testHTSensor = new SensirionHTSensor();
+
+    assertNotEqual(nullptr, testHTSensor);
+}
+
+test(SensirionHTSensorTests, GetHumidity)
+{
+    SensirionHTSensor testHTSensor = SensirionHTSensor();
+    float humidity = testHTSensor.GetHumidity();
+
+    String humidityString = String(humidity);
+
+    assertEqual(" nan", humidityString);
+}   
+
+test(SensirionHTSensorTests, GetTemperature)
+{
+    SensirionHTSensor testHTSensor = SensirionHTSensor();
+    float temperature = testHTSensor.GetTemperature();
+
+    String temperatureString = String(temperature);
+
+    assertEqual(" nan", temperatureString);
+} 
+
 void setup()
 {
 #if ! defined(EPOXY_DUINO)
@@ -153,7 +181,7 @@ void setup()
     SERIAL_PORT_MONITOR.begin(115200);
     while (!SERIAL_PORT_MONITOR); // needed for Leonardo/Micro
 
-    TestRunner::setVerbosity(Verbosity::kAll);
+    //TestRunner::setVerbosity(Verbosity::kAll);
 }
 
 void loop()

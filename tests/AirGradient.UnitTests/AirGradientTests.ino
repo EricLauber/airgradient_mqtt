@@ -22,6 +22,17 @@ test(AirGradientTests, Constructor)
     assertNotEqual(nullptr, airGradient);
 }
 
+test(AirGradientTests, Startup)
+{
+    IDisplay *mockDisplay = new MockDisplay();
+    IButton *mockButton = new MockButton();
+    ISoC *mockSoC = new MockSoC();
+
+    AirGradientPro airGradient = AirGradientPro(mockDisplay, mockButton, mockSoC);
+    
+    airGradient.Startup();
+}
+
 void setup()
 {
 #if ! defined(EPOXY_DUINO)

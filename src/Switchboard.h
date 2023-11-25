@@ -37,7 +37,7 @@
 #define BUTTON_TIMEOUT 4000
 
 // Include functionality to facilitate debugging such as Serial.println() calls.
-#define DEBUG_ENABLED 0
+#define DEBUG_ENABLED 1
 
 // Pin connected to AirGradient push button
 #define BUTTON_PIN D7

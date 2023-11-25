@@ -22,6 +22,7 @@ class AirGradientPro
     public:
         AirGradientPro(IDisplay* display, IButton* button, ISoC* soc);
         void Startup();
+        void SetupSensors();
         void Run();
 
         // Display

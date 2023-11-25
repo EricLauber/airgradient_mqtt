@@ -14,6 +14,7 @@ AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISoC* soc)
 
 void AirGradientPro::Startup()
 {
+    // Step 1. Alert the user to startup
     Serial.begin(115200);
 
     WriteToDisplay(
@@ -22,10 +23,12 @@ void AirGradientPro::Startup()
         OLEDStrings::StartupConfigPromptLine3
     );
 
+    // Step 2. Check if the user is entering config mode
     button->UpdateButtonInput(BUTTON_TIMEOUT);
 
     button->UpdateButtonInput(4000);
-    if (!button->LongPressed && !button->SingleClicked)
+    //if (!button->LongPressed && !button->SingleClicked)
+    if (button->LongPressed || button->SingleClicked)
     {
 #if DEBUG_ENABLED == 1
     Serial.println("Button press detected. Entering configuration mode.");
@@ -37,18 +40,13 @@ void AirGradientPro::Startup()
 #if DEBUG_ENABLED == 1
     Serial.println("No button detected. Begin sensor setup.");
 #endif
-
-
+        SetupSensors();
     }
+}
 
-
+void AirGradientPro::SetupSensors()
+{
     /*
-        1. Detect button push
-            if true, start ConfigStateMachine
-            1. while loop (forever?)
-                {
-                    machine.Run
-                }
 
         2.  Init sensors and output
                 u8g2 (display)
@@ -63,6 +61,7 @@ void AirGradientPro::Startup()
 
     
     */
+
 }
 
 void AirGradientPro::Run()

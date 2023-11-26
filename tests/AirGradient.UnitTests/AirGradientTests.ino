@@ -4,9 +4,7 @@
 #include <AUnit.h>
 #include <AUnitVerbose.h>
 #include <AirGradientPro.h>
-#include "../Mocks/MockDisplay.h"
-#include "../Mocks/MockButton.h"
-#include "../Mocks/MockSoC.h"
+#include "../Mocks/Mocks.h"
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -17,8 +15,9 @@ test(AirGradientTests, Constructor)
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
     ISoC *mockSoC = new MockSoC();
+    IHTSensor *mockHTSensor = new MockHTSensor();
 
-    AirGradientPro *airGradient = new AirGradientPro(mockDisplay, mockButton, mockSoC);
+    AirGradientPro *airGradient = new AirGradientPro(mockDisplay, mockButton, mockSoC, mockHTSensor);
     assertNotEqual(nullptr, airGradient);
 }
 
@@ -27,8 +26,9 @@ test(AirGradientTests, Startup)
     IDisplay *mockDisplay = new MockDisplay();
     IButton *mockButton = new MockButton();
     ISoC *mockSoC = new MockSoC();
+    IHTSensor *mockHTSensor = new MockHTSensor();
 
-    AirGradientPro airGradient = AirGradientPro(mockDisplay, mockButton, mockSoC);
+    AirGradientPro airGradient = AirGradientPro(mockDisplay, mockButton, mockSoC, mockHTSensor);
     
     airGradient.Startup();
 }

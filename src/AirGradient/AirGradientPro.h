@@ -17,10 +17,11 @@ class AirGradientPro
         IDisplay* display;
         IButton* button;
         ISoC* soc;
+        IHTSensor* htSensor;
         //ConfigStateMachine* configStateMachine;
 
     public:
-        AirGradientPro(IDisplay* display, IButton* button, ISoC* soc);
+        AirGradientPro(IDisplay* display, IButton* button, ISoC* soc, IHTSensor* htSensor);
         void Startup();
         void SetupSensors();
         void Run();

@@ -1,7 +1,7 @@
 #ifndef MockSoC_h
 #define MockSoC_h
 
-#include "ISoC.h"
+#include <ISoC.h>
 
 namespace IO
 {

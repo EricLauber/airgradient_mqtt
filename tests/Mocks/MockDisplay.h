@@ -2,7 +2,7 @@
 #define MockDisplay_h
 
 #include <WString.h>
-#include "IDisplay.h"
+#include <IDisplay.h>
 
 namespace Display
 {

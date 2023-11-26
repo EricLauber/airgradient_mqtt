@@ -49,15 +49,16 @@ void AirGradientPro::SetupSensors()
     /*
 
         2.  Init sensors and output
-                u8g2 (display)
+                u8g2 (display) - constructor handles startup
                 Warming up message.
                 
-                sht
+                sht - constructor handles startup
+                filesystem
                 WIFI
                 spg41
-                CO2
-                PMS
-                TMP-RH
+                CO2 (handled by AG)
+                PMS (handled by AG)
+                TMP-RH (handled by AG)
 
     
     */

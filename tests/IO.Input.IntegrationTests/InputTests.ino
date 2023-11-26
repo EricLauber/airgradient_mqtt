@@ -5,8 +5,18 @@
 #include <AUnitVerbose.h>
 #include <IO.h>
 #include "TimeControlButton.h"
+
+// should this break out to its own test file?
 #include <SensirionHTSensor.h>
 #include <WString.h>
+
+// should this break out to its own test file?
+#include <SensirionGasIndexSensor.h>
+#include <SensirionI2CSgp41.h>
+#include <NOxGasIndexAlgorithm.h>
+#include <VOCGasIndexAlgorithm.h>
+
+
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -180,6 +190,29 @@ test(SensirionHTSensorTests, GetTemperature)
     // Assert
     assertEqual(" nan", temperatureString);
 } 
+
+test(SensirionGasIndexSensorTests, Constructor)
+{
+    // Arrange, Act
+    IGasIndexSensor *testGasIndexSensor = new SensirionGasIndexSensor(Wire);
+
+    // Assert
+    assertNotEqual(nullptr, testGasIndexSensor);
+}
+
+test(SensirionGasIndexSensorTests, GetTVOC)
+{
+    // Arrange
+    SensirionGasIndexSensor testGasIndexSensor = SensirionGasIndexSensor(Wire);
+    testGasIndexSensor.SetCompenstation(37, .3);
+    
+    // Act
+    float tvoc = testGasIndexSensor.GetTVOCIndex();
+    String tvocString = String(tvoc);
+
+    // Assert
+    assertEqual(" nan", tvocString);
+}   
 
 void setup()
 {

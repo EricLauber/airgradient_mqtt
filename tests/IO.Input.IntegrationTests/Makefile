@@ -4,7 +4,7 @@
 include ../../.env
 
 APP_NAME := InputTests
-ARDUINO_LIBS := AUnit IO Input arduino-sht SensirionHTSensor
+ARDUINO_LIBS := AUnit IO Input arduino-sht SensirionHTSensor Sensirion_Core Sensirion_I2C_Sgp41 Sensirion_Gas_Index_Algorithm
 ARDUINO_LIB_DIRS := \
 	../../src \
 	../../src/IO

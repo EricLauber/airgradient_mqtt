@@ -55,7 +55,7 @@ void AirGradientPro::SetupSensors()
                 sht - constructor handles startup
                 filesystem
                 WIFI
-                spg41
+                spg41 - constructor handles startup
                 CO2 (handled by AG)
                 PMS (handled by AG)
                 TMP-RH (handled by AG)

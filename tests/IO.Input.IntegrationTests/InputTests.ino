@@ -148,28 +148,36 @@ test(TimeControlButtonTests, LongPress)
 
 test(SensirionHTSensorTests, Constructor)
 {
+    // Arrange, Act
     IHTSensor *testHTSensor = new SensirionHTSensor();
 
+    // Assert
     assertNotEqual(nullptr, testHTSensor);
 }
 
 test(SensirionHTSensorTests, GetHumidity)
 {
+    // Arrange
     SensirionHTSensor testHTSensor = SensirionHTSensor();
+    
+    // Act
     float humidity = testHTSensor.GetHumidity();
-
     String humidityString = String(humidity);
 
+    // Assert
     assertEqual(" nan", humidityString);
 }   
 
 test(SensirionHTSensorTests, GetTemperature)
 {
+    // Arrange
     SensirionHTSensor testHTSensor = SensirionHTSensor();
+    
+    // Act
     float temperature = testHTSensor.GetTemperature();
-
     String temperatureString = String(temperature);
 
+    // Assert
     assertEqual(" nan", temperatureString);
 } 
 

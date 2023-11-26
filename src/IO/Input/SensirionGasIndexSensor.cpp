@@ -26,13 +26,13 @@ namespace IO::Input
 
     float SensirionGasIndexSensor::GetTVOCIndex()
     {
-        //return voc_algorithm.process(srawVoc);
-        return 0.0;
+        VOCGasIndexAlgorithm voc_algorithm;
+        return voc_algorithm.process(srawVoc);
     }
 
     float SensirionGasIndexSensor::GetNOXIndex()
     {
-        //return nox_algorithm.process(srawNox);
-        return 0.0;
+        NOxGasIndexAlgorithm nox_algorithm;
+        return nox_algorithm.process(srawNox);
     }
 }

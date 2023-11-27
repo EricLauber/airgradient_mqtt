@@ -14,8 +14,8 @@ namespace IO::Input
             SHTSensor sht;
 
         public:
-            virtual float GetHumidity() override;
-            virtual float GetTemperature() override;
+            float GetHumidity() override;
+            float GetTemperature() override;
             
             SensirionHTSensor();
     };

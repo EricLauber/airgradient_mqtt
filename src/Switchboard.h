@@ -14,13 +14,17 @@
 #define RTTI_ENABLED 0
 
 
-
+// todo - alias the text for the <Library.h> rather that include them, so that referencing the Switchboard doesn't reference not-required includes
 #if defined(EPOXY_DUINO)
 // Leverage EpoxyDuino to mock the onboard flash storage
 #include <EpoxyEepromEsp.h>
 #include <EpoxyFS.h>
 #define EEPROM EpoxyEepromEspInstance
 #define FILE_SYSTEM fs::EpoxyFS
+
+// EpoxyDuino serial
+#define SOFTWARE_SERIAL_LIBRARY <StdioSerial.h>
+#define SOFTWARE_SERIAL StdioSerial
 
 // Reduce delays for test automation
 #define CONFIG_DISPLAY_DELAY 1
@@ -29,6 +33,10 @@
 #include <EEPROM.h>
 #include <LittleFS.h>
 #define FILE_SYSTEM LittleFS
+
+// Actual serial library
+#define SOFTWARE_SERIAL_LIBRARY <SoftwareSerial.h>
+#define SOFTWARE_SERIAL SoftwareSerial
 
 // Actual delay to enable user to read display
 #define CONFIG_DISPLAY_DELAY 500

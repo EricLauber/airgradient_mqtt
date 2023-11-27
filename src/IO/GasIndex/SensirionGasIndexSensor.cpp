@@ -1,6 +1,6 @@
 #include "SensirionGasIndexSensor.h"
 
-namespace IO::Input
+namespace IO::GasIndex
 {
     SensirionGasIndexSensor::SensirionGasIndexSensor(TwoWire wire)
     {

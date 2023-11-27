@@ -1,6 +1,6 @@
 #include "SensirionHTSensor.h"
 
-namespace IO::Input
+namespace IO::HT
 {
     float SensirionHTSensor::GetHumidity()
     {

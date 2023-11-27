@@ -1,22 +1,10 @@
-#line 2 "InputTests.ino"
+#line 2 "ButtonTests.ino"
 
 #include <Arduino.h>
 #include <AUnit.h>
 #include <AUnitVerbose.h>
 #include <IO.h>
 #include "TimeControlButton.h"
-
-// should this break out to its own test file?
-#include <SensirionHTSensor.h>
-#include <WString.h>
-
-// should this break out to its own test file?
-#include <SensirionGasIndexSensor.h>
-#include <SensirionI2CSgp41.h>
-#include <NOxGasIndexAlgorithm.h>
-#include <VOCGasIndexAlgorithm.h>
-
-#include <SenseairCO2Sensor.h>
 
 using aunit::TestRunner;
 using aunit::Verbosity;
@@ -154,107 +142,6 @@ test(TimeControlButtonTests, LongPress)
     // Assert
     assertFalse(testButton->SingleClicked);
     assertTrue(testButton->LongPressed);
-}
-
-test(SensirionHTSensorTests, Constructor)
-{
-    // Arrange, Act
-    IHTSensor *testHTSensor = new SensirionHTSensor();
-
-    // Assert
-    assertNotEqual(nullptr, testHTSensor);
-}
-
-test(SensirionHTSensorTests, GetHumidity)
-{
-    // Arrange
-    SensirionHTSensor testHTSensor = SensirionHTSensor();
-    
-    // Act
-    float humidity = testHTSensor.GetHumidity();
-    String humidityString = String(humidity);
-
-    // Assert
-    assertEqual(" nan", humidityString);
-}   
-
-test(SensirionHTSensorTests, GetTemperature)
-{
-    // Arrange
-    SensirionHTSensor testHTSensor = SensirionHTSensor();
-    
-    // Act
-    float temperature = testHTSensor.GetTemperature();
-    String temperatureString = String(temperature);
-
-    // Assert
-    assertEqual(" nan", temperatureString);
-} 
-
-test(SensirionGasIndexSensorTests, Constructor)
-{
-    // Arrange, Act
-    IGasIndexSensor *testGasIndexSensor = new SensirionGasIndexSensor(Wire);
-
-    // Assert
-    assertNotEqual(nullptr, testGasIndexSensor);
-}
-
-test(SensirionGasIndexSensorTests, GetTVOC)
-{
-    // Arrange
-    SensirionGasIndexSensor testGasIndexSensor = SensirionGasIndexSensor(Wire);
-    testGasIndexSensor.SetCompenstation(37, .3);
-    
-    // Act
-    float tvoc = testGasIndexSensor.GetTVOCIndex();
-    
-    // Assert
-    assertEqual(0.00, tvoc);
-}
-
-test(SensirionGasIndexSensorTests, GetNOX)
-{
-    // Arrange
-    SensirionGasIndexSensor testGasIndexSensor = SensirionGasIndexSensor(Wire);
-    testGasIndexSensor.SetCompenstation(37, .3);
-    
-    // Act
-    float nox = testGasIndexSensor.GetNOXIndex();
-    
-    // Assert
-    assertEqual(0.00, nox);
-}   
-
-test(SenseairCO2SensorTests, Constructor)
-{
-    // Arrange, Act
-    ICO2Sensor *testCO2Sensor = new SenseairCO2Sensor();
-
-    // Assert
-    assertNotEqual(nullptr, testCO2Sensor);
-}
-
-test(SenseairCO2SensorTests, GetCO2Raw)
-{
-    // Arrange, Act
-    SenseairCO2Sensor testCO2Sensor = SenseairCO2Sensor();
-
-    int co2 = testCO2Sensor.GetCO2Raw();
-    
-    // Assert - in EpoxyDuino without real hardware, timeout should return -3
-    assertEqual(-3, co2);
-}
-
-test(SenseairCO2SensorTests, GetAverageCO2)
-{
-    // Arrange, Act
-    SenseairCO2Sensor testCO2Sensor = SenseairCO2Sensor();
-
-    int co2 = testCO2Sensor.GetAverageCO2(5);
-    
-    // Assert - in EpoxyDuino without real hardware, collection failuer should return -5
-    assertEqual(-5, co2);
 }
 
 void setup()

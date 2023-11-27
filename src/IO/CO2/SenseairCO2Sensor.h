@@ -6,7 +6,7 @@
 #include <Arduino.h>
 #include SOFTWARE_SERIAL_LIBRARY
 
-namespace IO::Input
+namespace IO::CO2
 {
     class SenseairCO2Sensor : public ICO2Sensor
     {

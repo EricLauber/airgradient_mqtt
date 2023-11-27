@@ -8,7 +8,7 @@
 #include <VOCGasIndexAlgorithm.h>
 
 
-namespace IO::Input
+namespace IO::GasIndex
 {
     class SensirionGasIndexSensor : public IGasIndexSensor
     {

@@ -2,11 +2,9 @@
 #define SensirionHTSensor_h
 
 #include "../IHTSensor.h"
-// this might not work
 #include <SHTSensor.h>
 
-
-namespace IO::Input
+namespace IO::HT
 {
     class SensirionHTSensor : public IHTSensor
     {

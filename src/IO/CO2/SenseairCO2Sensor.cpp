@@ -1,6 +1,6 @@
 #include "SenseairCO2Sensor.h"
 
-namespace IO::Input
+namespace IO::CO2
 {
     SenseairCO2Sensor::SenseairCO2Sensor()
     {

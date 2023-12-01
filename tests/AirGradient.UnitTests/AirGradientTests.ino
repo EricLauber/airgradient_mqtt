@@ -16,8 +16,10 @@ test(AirGradientTests, Constructor)
     IButton *mockButton = new MockButton();
     ISoC *mockSoC = new MockSoC();
     IHTSensor *mockHTSensor = new MockHTSensor();
+    IGasIndexSensor *gasIndexSensor = new MockGasIndexSensor();
+    ICO2Sensor *co2Sensor = new MockCO2Sensor();
 
-    AirGradientPro *airGradient = new AirGradientPro(mockDisplay, mockButton, mockSoC, mockHTSensor);
+    AirGradientPro *airGradient = new AirGradientPro(mockDisplay, mockButton, mockSoC, mockHTSensor, gasIndexSensor, co2Sensor);
     assertNotEqual(nullptr, airGradient);
 }
 
@@ -27,8 +29,10 @@ test(AirGradientTests, Startup)
     IButton *mockButton = new MockButton();
     ISoC *mockSoC = new MockSoC();
     IHTSensor *mockHTSensor = new MockHTSensor();
+    IGasIndexSensor *gasIndexSensor = new MockGasIndexSensor();
+    ICO2Sensor *co2Sensor = new MockCO2Sensor();
 
-    AirGradientPro airGradient = AirGradientPro(mockDisplay, mockButton, mockSoC, mockHTSensor);
+    AirGradientPro airGradient = AirGradientPro(mockDisplay, mockButton, mockSoC, mockHTSensor, gasIndexSensor, co2Sensor);
     
     airGradient.Startup();
 }

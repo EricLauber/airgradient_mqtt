@@ -5,5 +5,7 @@
 #include "MockDisplay.h"
 #include "MockSoC.h"
 #include "MockHTSensor.h"
+#include "MockGasIndexSensor.h"
+#include "MockCO2Sensor.h"
 
 #endif

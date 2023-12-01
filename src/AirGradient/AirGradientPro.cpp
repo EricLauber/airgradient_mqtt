@@ -4,12 +4,14 @@ using namespace Display;
 using namespace IO;
 using namespace Data;
 
-AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISoC* soc, IHTSensor* htSensor)
+AirGradientPro::AirGradientPro(IDisplay* display, IButton* button, ISoC* soc, IHTSensor* htSensor, IGasIndexSensor* gasIndexSensor, ICO2Sensor* co2Sensor)
 {
     this->display = display;
     this->button = button;
     this->soc = soc;
     this->htSensor = htSensor;
+    this->gasIndexSensor = gasIndexSensor;
+    this->co2Sensor = co2Sensor;
 }
 
 void AirGradientPro::Startup()

@@ -3,6 +3,8 @@
 
 #include "IButton.h"
 #include "IHTSensor.h"
+#include "IGasIndexSensor.h"
+#include "ICO2Sensor.h"
 #include "ISoC.h"
 
 #endif

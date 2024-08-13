@@ -2,11 +2,11 @@
 
 Early on in my career I wrote Arduino sketches for some hobby applications. They were small, simple, and did the job. But debugging and testing was tedious - you had to upload the sketch to your controller ever time you wanted to make a change and test it manually.
 
-Having now spent over a decade working in software engineering, I realize we can do more. My goal with this project is to apply several principles of modern software development to an Arduino sketch, and to gain the practice of doing them with C++. My hope is that my examples of applying these practices an ideas encourages others to grow further in their coding journey and apply some of these concepts themselves.
+With the benefit of hindsight, I realize we can do more. My goal with this project is to apply several principles of modern software development to an Arduino sketch, and to gain the practice of doing them with C++. My hope is that my examples of applying these practices an ideas encourages others to grow further in their coding journey and apply some of these concepts themselves.
 
 ## Modern Software Architectures and Design Principles
 
-In my day job we often apply architecture ideas like Clean Architecture (I'm a fan of this [].NET implementation](https://github.com/ardalis/CleanArchitecture)) and [SOLID](https://en.wikipedia.org/wiki/SOLID). These patterns trade adding some complexity in the design and layout of the code for flexibility and extensibilty. Object-oriented objects and single-purpose functions are easier to test and become confident in their behavior. Defining and inheriting interfaces makes it easy to swap one component for another. Although there isn't a lot of reusability within this sketch, hopefully building objects in this way demonstrates an example of what's possible on the Arduino platform, and gives others options and tools to copy and reuse.
+I am a fan of Clean Architecture (like this [.NET implementation](https://github.com/ardalis/CleanArchitecture)) and [SOLID](https://en.wikipedia.org/wiki/SOLID). These patterns trade adding some complexity in the design and layout of the code for flexibility and extensibilty. Object-oriented objects and single-purpose functions are easier to test and become confident in their behavior. Defining and inheriting interfaces makes it easy to swap one component for another. Although there isn't a lot of reusability within this sketch, hopefully building objects in this way demonstrates an example of what's possible on the Arduino platform, and gives others options and tools to copy and reuse.
 
 ## Automated Testing
 

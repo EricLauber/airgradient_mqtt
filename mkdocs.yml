@@ -1,0 +1,71 @@
+# Project information
+site_name: AirGradient Arduino MQTT
+site_url: https://ericlauber.github.io/airgradient_with_tests/
+site_author: Eric Lauber
+site_description: >-
+  Arduino sketch for AirGradient DIY PRO V4.2 with added MQTT support, based around an ESP8266 Microcontroller.
+
+# Repository
+repo_name: EricLauber/airgradient_with_tests
+repo_url: https://github.com/EricLauber/airgradient_with_tests
+
+# Configuration
+theme:
+  name: material
+  highlightjs: true
+  hljs_languages:
+    - yaml
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
+    - navigation.sections
+    
+    # - navigation.tabs.sticky
+
+    - toc.follow
+
+# Extensions
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  
+# Page Tree
+nav:
+  - Home: index.md
+
+  - What is AirGradient?: intro.md
+
+  - Goals of this Project: goals.md
+
+  - Implementation:
+    - Getting Started: setup.md
+    - Details: 
+      - implementation/index.md
+      - Run-Time Type Information: implementation/rtti.md
+      - Startup State Machine: implementation/configstatemachine.md
+      - Networking: implementation/networking.md
+
+  - Integrations:
+    - 'Home Assistant': homeassistant.md
+  
+  - References: references.md
+    

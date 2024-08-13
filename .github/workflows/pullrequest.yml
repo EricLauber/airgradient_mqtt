@@ -1,0 +1,25 @@
+# todo! need to get or clone all referenced libraries
+
+# name: Run AUnit tests with EpoxyDuino
+# on:
+#   pull_request:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       - name: Setup environment
+#         run: | 
+#           cd ..
+#           git clone https://github.com/bxparks/EpoxyDuino
+
+#       - name: Run Tests
+#         run: |
+#           make -C tests
+#           make -C tests runtests

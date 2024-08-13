@@ -2,7 +2,7 @@ name: Publish docs to GitHub Pages
 on:
   push:
     branches:
-      - add-diy4_2-sensors-and-capabilities
+      - main
 
 jobs:
   build:

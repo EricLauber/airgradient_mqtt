@@ -4,7 +4,7 @@
 
 This is an Arduino software implementation for the AirGradient DIY Air Quality Sensor Pro, PCB version 4.2. I have paused development for this project.
 
-I created this fork of [AirGradient's Arduino code](https://github.com/airgradienthq/arduino) prior to their implementation of MQTT and local web server support. My intention was to add that functionality while also bringing in other software development best practices such as automated testing and Continuous Integration and patterns like SOLID. [Click here for detailed documentation about the implementation](https://ericlauber.github.io/airgradient_mqtt/).
+I created this fork of [AirGradient's Arduino code](https://github.com/airgradienthq/arduino) prior to their implementation of MQTT and local web server support. My intention was to add that functionality while also bringing in other software development best practices such as automated testing and Continuous Integration and patterns like SOLID. [Click here for detailed documentation about the implementation](https://ericlauber.github.io/airgradient_with_tests/).
 
 Please feel free to use this project as an example of applying modern software development best practices to Arduino projects.
 

@@ -1,13 +1,13 @@
 # Project information
 site_name: AirGradient Arduino MQTT
-site_url: https://ericlauber.github.io/airgradient_mqtt/
+site_url: https://ericlauber.github.io/airgradient_with_tests/
 site_author: Eric Lauber
 site_description: >-
   Arduino sketch for AirGradient DIY PRO V4.2 with added MQTT support, based around an ESP8266 Microcontroller.
 
 # Repository
-repo_name: EricLauber/airgradient_mqtt
-repo_url: https://github.com/EricLauber/airgradient_mqtt
+repo_name: EricLauber/airgradient_with_tests
+repo_url: https://github.com/EricLauber/airgradient_with_tests
 
 # Configuration
 theme:
